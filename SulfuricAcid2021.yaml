@@ -1198,10 +1198,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id012 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id012
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
@@ -1225,10 +1225,10 @@ Properties:
       Number, validators: null, value: 2619}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\super\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\evangebo\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\super\'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\super\FRCProjects',
-    extension: null, folder: true, name: Export Directory, validators: null, value: 'D:\SourceTreeRepositories\SulfuricAcid2021'}
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\evangebo\FRCProjects',
+    extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: PlaceHolderAuton}
 Base: Robot
