@@ -89,8 +89,8 @@ public class Slalom extends SequentialCommandGroup {
           */
           
           
-          //String trajectoryJSON = "paths/test.wpilib.json";
-          String trajectoryJSON = "paths/slalom.wpilib.json";
+          String trajectoryJSON = "paths/test.wpilib.json";
+          //String trajectoryJSON = "paths/slalom.wpilib.json";
           Trajectory trajectory = new Trajectory();
           try { 
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);

@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+/*package frc.robot.subsystems;
 
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +25,7 @@ public class ColorSensor implements Subsystem {
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
      * sensor.
     */
-
+/*
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
     private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
     private final ColorMatch m_colorMatcher = new ColorMatch();
@@ -55,7 +55,7 @@ public class ColorSensor implements Subsystem {
        * Run the color match algorithm on our detected color
        */
 
-       
+       /*
       ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
       if (match.color == kBlueTarget) {
@@ -85,3 +85,4 @@ public class ColorSensor implements Subsystem {
     }
 
 }
+*/
