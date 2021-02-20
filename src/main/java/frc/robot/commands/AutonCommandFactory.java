@@ -74,6 +74,6 @@ public class AutonCommandFactory extends CommandBase {
 
 
     public Command getAutonIntake(){
-        return new RunIntake(0.5, RobotContainer.getInstance().getIntake());
+        return new RunIntake(RobotContainer.getInstance().getIntake(), 0.5);
     }
 }
