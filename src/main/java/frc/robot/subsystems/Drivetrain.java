@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.SerialPort.Port; //might change to I2C
 import edu.wpi.first.wpilibj.controller.PIDController;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -86,8 +87,8 @@ public class Drivetrain extends SubsystemBase {
     // private static final AHRS ahrs = new AHRS(Port.kMXP);
 
     private static boolean isReversed = false;
-    private static boolean halfSpeed = false;
-    private static boolean quarterSpeed = false;
+    private static boolean speedMultiplierActive = false;
+    private static double speedMultiplier = 1;
 
     public Drivetrain() {
         initializeMotors();
@@ -116,13 +117,9 @@ public class Drivetrain extends SubsystemBase {
             leftSpeed = -1 * leftSpeed;
             rightSpeed = -1 * rightSpeed;
         }
-        if(halfSpeed) {
-            leftSpeed = 0.5 * leftSpeed;
-            rightSpeed = 0.5 * rightSpeed;
-        }
-        else if(quarterSpeed) {
-            leftSpeed = 0.25 * leftSpeed;
-            rightSpeed = 0.25 * rightSpeed;
+        if(speedMultiplierActive) {
+            leftSpeed = speedMultiplier * leftSpeed;
+            rightSpeed = speedMultiplier * rightSpeed;
         }
 
         SmartDashboard.putNumber("Drivetrain leftSpeed", leftSpeed);
@@ -183,28 +180,19 @@ public class Drivetrain extends SubsystemBase {
         return isReversed;
     }
 
-    public boolean getHalfSpeed() {
-        return halfSpeed;
-    }
-
-    public boolean getQuarterSpeed() {
-        return quarterSpeed;
+    public boolean getMultiplierSpeed() {
+        return speedMultiplierActive;
     }
 
     public void setReversed(boolean r) {
         isReversed = r;
     }
 
-    public void setHalfSpeed(boolean h) {
-        halfSpeed = h;
-        if(h)       //prevents both halfSpeed and QuarterSpeed from being true at the same time
-            quarterSpeed = false;
-    }
-
-    public void setQuarterSpeed(boolean q) {
-        quarterSpeed = q;
-        if(q)
-            halfSpeed = false;
+    public void setMultiplierSpeed(boolean active, double multiplier) {
+        if(multiplier == speedMultiplier || !speedMultiplierActive)     //this mode is only toggled if: this mode is off already OR the same button that turned this mode on was pressed again
+            speedMultiplierActive = active;
+        if(speedMultiplierActive)                                       //only sets the new speed coefficient if this drive mode is being turned on
+            speedMultiplier = multiplier;
     }
 
     public void writePIDs(double output) {

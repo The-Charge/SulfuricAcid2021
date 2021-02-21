@@ -131,13 +131,13 @@ public class RobotContainer {
     // SmartDashboard.putData("TurnNDegreesAbsolute: default", new
     // TurnNDegreesAbsolute(180));
     SmartDashboard.putData("InvertDrive", new InvertDrive(drivetrain));
-    SmartDashboard.putData("QuarterSpeed", new QuarterSpeed(drivetrain));
+    SmartDashboard.putData("QuarterSpeed", new XPercentSpeed(drivetrain, 0.25));
     // SmartDashboard.putData("RotationControl", new RotationControl(controlPanel,
     // colorSensor));
     // SmartDashboard.putData("PositionControl", new PositionsControl(controlPanel,
     // colorSensor));
     SmartDashboard.putData("Index: default", new Index(indexer, 0.1));
-    SmartDashboard.putData("HalfSpeed", new HalfSpeed(drivetrain));
+    SmartDashboard.putData("HalfSpeed", new XPercentSpeed(drivetrain, 0.5));
     SmartDashboard.putData("ToggleLockStraight", new ToggleLockStraight(drivetrain));
     // SmartDashboard.putData("ManualTurretElevation: default", new
     // ManualTurretElevation(0));
@@ -241,7 +241,7 @@ public class RobotContainer {
     shiftHighWPBtn = new JoystickButton(rightJoystick, 3);
     shiftHighWPBtn.whenPressed(new ShiftHigh(shifters));
     quarterSpeedBtn = new JoystickButton(rightJoystick, 4);
-    quarterSpeedBtn.whenPressed(new QuarterSpeed(drivetrain));
+    quarterSpeedBtn.whenPressed(new XPercentSpeed(drivetrain, 0.25));
 
     shiftLowBtn = new JoystickButton(rightJoystick, 5);
     shiftLowBtn.whenPressed(new ShiftLow(shifters));
