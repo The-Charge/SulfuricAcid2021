@@ -66,6 +66,9 @@ public class TurretElevation extends SubsystemBase {
     }
 
     public void setRawExtension(double extension) {
+        // FIXME: last year we discovered that [0, 1] wasn't actually the range of the
+        // turret. Due to a mechanical constraint (maybe?) we had to lerp it between [a,
+        // b]. Dig through the commits to find out what the constants were
         elevationServo.set(extension);
     }
 
@@ -96,12 +99,14 @@ public class TurretElevation extends SubsystemBase {
     }
 
     /**
-     * Calculate the angle given by an extension using the inverse of {@link #angleToExtension(double)}
+     * Calculate the angle given by an extension using the inverse of
+     * {@link #angleToExtension(double)}
      * 
      * @param extension in the range [0, 1]
      * @return angle in degrees
      */
     private double extensionToAngle(double extension) {
+        extension = extension * 140 + 218;
         return 94.4 - Math.toDegrees(Math
                 .acos((Math.pow(SIDE_A, 2) + Math.pow(SIDE_B, 2) - Math.pow(extension, 2)) / (2 * SIDE_A * SIDE_B)));
     }
