@@ -57,8 +57,8 @@ public class RobotContainer {
   private static RobotContainer m_robotContainer = new RobotContainer();
 
   //SUBSYSTEMS
-  public ControlPanel controlPanel = new ControlPanel();
-  public ColorSensor colorSensor = new ColorSensor();
+  //public ControlPanel controlPanel = new ControlPanel();
+ // public ColorSensor colorSensor = new ColorSensor();
   public Drivetrain drivetrain = new Drivetrain();
   public Turret turret = new Turret();
   public Lights lights = new Lights(turret);
@@ -130,8 +130,8 @@ public class RobotContainer {
     //SmartDashboard.putData("TurnNDegreesAbsolute: default", new TurnNDegreesAbsolute(180));
     SmartDashboard.putData("InvertDrive", new InvertDrive(drivetrain));
     SmartDashboard.putData("QuarterSpeed", new QuarterSpeed(drivetrain));
-    SmartDashboard.putData("RotationControl", new RotationControl(controlPanel, colorSensor));
-    SmartDashboard.putData("PositionControl", new PositionsControl(controlPanel, colorSensor));
+    //SmartDashboard.putData("RotationControl", new RotationControl(controlPanel, colorSensor));
+    //SmartDashboard.putData("PositionControl", new PositionsControl(controlPanel, colorSensor));
     SmartDashboard.putData("Index: default", new Index(indexer, 0.1));
     SmartDashboard.putData("HalfSpeed", new HalfSpeed(drivetrain));
     SmartDashboard.putData("ToggleLockStraight", new ToggleLockStraight(drivetrain));
@@ -141,8 +141,8 @@ public class RobotContainer {
     //SmartDashboard.putData("RunTurretManual", new RunTurretManual());
     SmartDashboard.putData("ClimberRun: up", new ClimberRun(climber, 0.5));
     SmartDashboard.putData("ClimberRun: down", new ClimberRun(climber, -0.5));
-    SmartDashboard.putData("RotationControl", new RotationControl(controlPanel, colorSensor));
-    SmartDashboard.putData("PositionsControl", new PositionsControl(controlPanel, colorSensor));
+    //SmartDashboard.putData("RotationControl", new RotationControl(controlPanel, colorSensor));
+    //SmartDashboard.putData("PositionsControl", new PositionsControl(controlPanel, colorSensor));
     SmartDashboard.putNumber("Degrees:", 0);
     SmartDashboard.putNumber("TurnPID P:", 0.05);
     SmartDashboard.putNumber("TurnPID I:", 0.00004);
@@ -209,9 +209,9 @@ private void configureButtonBindings() {
     visionOverrideBtn.whenPressed(new RunTurretManual(turret));
      
     positionControlBtn = new JoystickButton(buttonBox, 5);
-    positionControlBtn.whileHeld(new PositionsControl(controlPanel, colorSensor));
+    //positionControlBtn.whileHeld(new PositionsControl(controlPanel, colorSensor));
     rotationControlBtn = new JoystickButton(buttonBox, 6);
-    rotationControlBtn.whileHeld(new RotationControl(controlPanel, colorSensor));
+    //rotationControlBtn.whileHeld(new RotationControl(controlPanel, colorSensor));
 
     //senseColorBtn = new JoystickButton(buttonBox, 5);
     //senseColorBtn.whileHeld(new SenseColor(colorSensor));

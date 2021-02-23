@@ -1,6 +1,6 @@
-package frc.robot.commands;
+/*package frc.robot.commands;
 
-import com.revrobotics.ColorMatch;
+//import com.revrobotics.ColorMatch;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -14,7 +14,7 @@ public class PositionsControl extends CommandBase {
 
     private Color targetColor;
     private String targetString;
-    private Color desiredColor = ColorMatch.makeColor(0.143, 0.427, 0.429);
+    //private Color desiredColor = ColorMatch.makeColor(0.143, 0.427, 0.429);
    
     public PositionsControl(ControlPanel controlPanel, ColorSensor colorSensor) {
         m_controlPanel = controlPanel;
@@ -60,3 +60,4 @@ public class PositionsControl extends CommandBase {
         
     }
 }
+*/
