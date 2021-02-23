@@ -16,7 +16,6 @@ public class XPercentSpeed extends InstantCommand {
     // Called once when this command runs
     @Override
     public void initialize() {
-        m_subsystem.setMultiplierSpeed(!m_subsystem.getMultiplierSpeed(), m_speedMult);
+        m_subsystem.setSpeedMultiplier(!m_subsystem.getMultiplierSpeed(), m_speedMult);
     }
-
 }

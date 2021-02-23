@@ -188,7 +188,14 @@ public class Drivetrain extends SubsystemBase {
         isReversed = r;
     }
 
-    public void setMultiplierSpeed(boolean active, double multiplier) {
+    /**
+     * Toggles a customizable slower speed mode in the same way QuarterSpeed or HalfSpeed might. 
+     * If this mode is already active but with a different multiplier, the mode stays active and the multiplier is updated. Otherwise, it should toggle as expected.
+     * 
+     * @param active the desired active/inactive state of the mode
+     * @param multiplier the desired speed multiplier [0-1]
+     */
+    public void setSpeedMultiplier(boolean active, double multiplier) {
         if(multiplier == speedMultiplier || !speedMultiplierActive)     //this mode is only toggled if: this mode is off already OR the same button that turned this mode on was pressed again
             speedMultiplierActive = active;
         if(speedMultiplierActive)                                       //only sets the new speed coefficient if this drive mode is being turned on
