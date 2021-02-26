@@ -96,7 +96,7 @@ public class GalacticSearchBlueA extends SequentialCommandGroup {
           
           
           //String trajectoryJSON = "paths/test.wpilib.json";
-          String trajectoryJSON = "paths/galacticBlueA.wpilib.json";
+          String trajectoryJSON = "output/galacticBlueA.wpilib.json";
           Trajectory trajectory = new Trajectory();
           try { 
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);

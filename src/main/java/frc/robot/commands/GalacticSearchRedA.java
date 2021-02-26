@@ -95,7 +95,7 @@ public class GalacticSearchRedA extends SequentialCommandGroup {
           
           
           //String trajectoryJSON = "paths/test.wpilib.json";
-          String trajectoryJSON = "paths/galacticRedA.wpilib.json";
+          String trajectoryJSON = "output/galacticRedA.wpilib.json";
           Trajectory trajectory = new Trajectory();
           try { 
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
