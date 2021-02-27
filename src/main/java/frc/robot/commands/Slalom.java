@@ -12,6 +12,7 @@ package frc.robot.commands;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -23,6 +24,7 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Transform2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -75,7 +77,7 @@ public class Slalom extends SequentialCommandGroup {
                 .addConstraint(autoVoltageConstraint);
     
         
-           /* 
+        
         Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
             // Start at the origin facing the +X direction
             new Pose2d(0, 0, new Rotation2d(0)),
@@ -86,9 +88,9 @@ public class Slalom extends SequentialCommandGroup {
             ),
             new Pose2d(1.0, 0, new Rotation2d(0)),
             config);
-          */
           
           
+          /*
           String trajectoryJSON = "output/test.wpilib.json";
           //String trajectoryJSON = "paths/slalom.wpilib.json";
           Trajectory trajectory = new Trajectory();
@@ -99,7 +101,7 @@ public class Slalom extends SequentialCommandGroup {
             //DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
             System.out.println("Unable to open");
           }
-          
+          */
     
         RamseteCommand ramseteCommand = new RamseteCommand(
             trajectory,

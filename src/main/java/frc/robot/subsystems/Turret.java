@@ -32,7 +32,7 @@ public class Turret implements Subsystem {
    
 
     public Turret() {    
-        turretMotor = new WPI_TalonSRX(7);
+        turretMotor = new WPI_TalonSRX(11);
         elevationServo = new Servo(0);
         visionLights = new Relay(0);
 
