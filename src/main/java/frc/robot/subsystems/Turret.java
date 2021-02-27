@@ -12,12 +12,17 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Turret implements Subsystem {
+    // -482070
     private static final int H_MIN_ENCODER_TICKS = -482070;  // used to stop turret from rotating past ends
     private static final int H_MAX_ENCODER_TICKS = 484191;
     private static final double H_DEGREES_PER_TICK = 0;
     private static final double H_MIN_DEGREES = H_MIN_ENCODER_TICKS * H_DEGREES_PER_TICK;
     private static final double H_MAX_DEGREES = H_MAX_ENCODER_TICKS * H_DEGREES_PER_TICK;
-    private static final double H_TOLERANCE = 0.5;
+
+    private static final double H_TOLERANCE = 1;
+    private static final double H_MIN_PERCENT = 0.1;
+    private static final double H_MAX_PERCENT = 0.25;
+
     public final double DEFAULT_HORIZONTAL_ENCODER_PERCENT = 0.2;
 
     //Constants aquired from CAD team used for trig calculations (millimeters):
@@ -32,7 +37,7 @@ public class Turret implements Subsystem {
    
 
     public Turret() {    
-        turretMotor = new WPI_TalonSRX(7);
+        turretMotor = new WPI_TalonSRX(11);
         elevationServo = new Servo(0);
         visionLights = new Relay(0);
 
@@ -50,8 +55,7 @@ public class Turret implements Subsystem {
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Turret Rotation", getCurrentHorizontalAngle());
-        SmartDashboard.putNumber("Position", getCurrentHorizontalAngle());  //CHANGE TO TICKS
+        SmartDashboard.putNumber("Turret/ticks", turretMotor.getSelectedSensorPosition());
         checkHorizontalLimitSwitches();
     }
     
@@ -76,9 +80,9 @@ public class Turret implements Subsystem {
 
     public void checkHorizontalLimitSwitches() {
         if (turretMotor.getSensorCollection().isRevLimitSwitchClosed()) {
-            turretMotor.setSelectedSensorPosition((int)H_MIN_ENCODER_TICKS, 0, TIMEOUT_MS);
-        } else if (turretMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
             turretMotor.setSelectedSensorPosition((int)H_MAX_ENCODER_TICKS, 0, TIMEOUT_MS);
+        } else if (turretMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
+            turretMotor.setSelectedSensorPosition((int)H_MIN_ENCODER_TICKS, 0, TIMEOUT_MS);
         }
     }
 
@@ -97,8 +101,9 @@ public class Turret implements Subsystem {
         if (Math.abs(setpoint) > H_TOLERANCE) {
             //FIXME: Move the magic numbers to constants. Document them.
             double percent = Math.abs(setpoint) / 40;
-            percent = Math.max(0.06, Math.min(0.19, percent));
+            percent = Math.max(H_MIN_PERCENT, Math.min(H_MAX_PERCENT, percent));
             if (setpoint < 0) { percent = -percent; }
+            percent = -percent;
             turretMotor.set(ControlMode.PercentOutput, percent);
         } else {
             turretMotor.set(ControlMode.PercentOutput, 0);
