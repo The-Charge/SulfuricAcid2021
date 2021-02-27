@@ -32,14 +32,15 @@ public class Constants {
         public static final int kRightMotor3Port = 8;
         //public static final int[] kLeftEncoderPorts = new int[]{1,2,3};
         //public static final int[] kRightEncoderPorts = new int[]{7,0,8};
-        public static final boolean kLeftEncoderReversed = false;
-        public static final boolean kRightEncoderReversed = true;
+        // These are never called
+        // public static final boolean kLeftEncoderReversed = false;
+        // public static final boolean kRightEncoderReversed = true;
     
         public static final double kTrackwidthMeters = 0.749676776;
         public static final DifferentialDriveKinematics kDriveKinematics =
             new DifferentialDriveKinematics(kTrackwidthMeters);
     
-        public static final int kEncoderCPR = 14000;
+        public static final int kEncoderCPR = 14000;  // 15525
         public static final double kWheelDiameterMeters = 0.152;
         public static final double kEncoderDistancePerPulse =
             // Assumes the encoders are directly mounted on the wheel shafts
@@ -47,7 +48,7 @@ public class Constants {
     
         public static final boolean kGyroReversed = true;
       //TODO test/tune these values
-        public static final double ksVolts = 0.501;
+        public static final double ksVolts = 0.501; //.501
         public static final double kvVoltSecondsPerMeter = 1.6;
         public static final double kaVoltSecondsSquaredPerMeter = 0.176;
     

@@ -149,19 +149,11 @@ public class RobotContainer {
     SmartDashboard.putNumber("TurnPID D:", 0.0025);
     SmartDashboard.putData("Set Balls 0", new BallCounterReset(ballSensor));
 
-    SmartDashboard.putData("AutonomousCorner", new AutonomousCorner( drivetrain ));
-    SmartDashboard.putData("AutonomousCorner2", new AutonomousCorner2( drivetrain ));
-    SmartDashboard.putData("AutonomousPortTR", new AutonomousPortTR( drivetrain ));
-    SmartDashboard.putData("AutonomousPortTR2", new AutonomousPortTR2( drivetrain ));
-    SmartDashboard.putData("AutonomousForward", new AutonomousForward( drivetrain ));
-    SmartDashboard.putData("AutonomousBackward", new AutonomousBackward( drivetrain ));
-    SmartDashboard.putData("AutonomousBackwardS2", new AutonomousBackwardS2( drivetrain ));
-    SmartDashboard.putData("AutonomousBackwardS", new AutonomousBackwardS( drivetrain ));
-    SmartDashboard.putData("AutonomousNew", new AutonomousNew( drivetrain ));
-    SmartDashboard.putData("GalacticSearchRedA", new GalacticSearchRedA( drivetrain ));
-    SmartDashboard.putData("GalacticSearchRedB", new GalacticSearchRedB( drivetrain ));
-    SmartDashboard.putData("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain ));
-    SmartDashboard.putData("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain ));
+    
+    SmartDashboard.putData("GalacticSearchRedA", new GalacticSearchRedA( drivetrain, intake ));
+    SmartDashboard.putData("GalacticSearchRedB", new GalacticSearchRedB( drivetrain, intake ));
+    SmartDashboard.putData("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain, intake ));
+    SmartDashboard.putData("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain, intake ));
     SmartDashboard.putData("BarrelRacing", new BarrelRacing( drivetrain ));
     SmartDashboard.putData("Slalom", new Slalom( drivetrain ));
     SmartDashboard.putData("Bounce", new Bounce( drivetrain ));
@@ -253,23 +245,15 @@ private void configureButtonBindings() {
 
 
 
-     m_chooser.addOption("AutonomousCorner", new AutonomousCorner( drivetrain ));
-    m_chooser.addOption("AutonomousCorner2", new AutonomousCorner2( drivetrain ));
-    m_chooser.addOption("AutonomousPortTR", new AutonomousPortTR( drivetrain ));
-    m_chooser.addOption("AutonomousPortTR2", new AutonomousPortTR2( drivetrain ));
-    m_chooser.addOption("AutonomousForward", new AutonomousForward( drivetrain ));
-    m_chooser.addOption("AutonomousBackward", new AutonomousBackward( drivetrain ));
-    m_chooser.addOption("AutonomousBackwardS2", new AutonomousBackwardS2( drivetrain ));
-    m_chooser.addOption("AutonomousBackwardS", new AutonomousBackwardS( drivetrain ));
-    m_chooser.addOption("AutonomousNew", new AutonomousNew( drivetrain ));
-    m_chooser.addOption("GalacticSearchRedA", new GalacticSearchRedA( drivetrain ));
-    m_chooser.addOption("GalacticSearchRedB", new GalacticSearchRedB( drivetrain ));
-    m_chooser.addOption("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain ));
-    m_chooser.addOption("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain ));
-    m_chooser.addOption("BarrelRacing", new BarrelRacing( drivetrain ));
-    m_chooser.addOption("Slalom", new Slalom( drivetrain ));
-    m_chooser.addOption("Bounce", new Bounce( drivetrain ));
-    m_chooser.setDefaultOption("PlaceHolderAuton", new PlaceHolderAuton());
+   
+    // m_chooser.addOption("GalacticSearchRedA", new GalacticSearchRedA( drivetrain, intake ));
+    // m_chooser.addOption("GalacticSearchRedB", new GalacticSearchRedB( drivetrain, intake ));
+    // m_chooser.addOption("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain, intake ));
+    // m_chooser.addOption("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain, intake ));
+    // m_chooser.addOption("BarrelRacing", new BarrelRacing( drivetrain ));
+    // m_chooser.addOption("Slalom", new Slalom( drivetrain ));
+    // m_chooser.addOption("Bounce", new Bounce( drivetrain ));
+    m_chooser.setDefaultOption("Slalom", new Slalom(drivetrain));
 
   }
   /**
@@ -279,6 +263,8 @@ private void configureButtonBindings() {
   */
   public Command getAutonomousCommand() {
     // The selected command will be run in autonomous
+    // return null;
+    // return new Slalom(drivetrain);
     return m_chooser.getSelected();
   }
   
