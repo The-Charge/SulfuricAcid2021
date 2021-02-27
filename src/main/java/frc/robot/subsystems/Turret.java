@@ -18,7 +18,11 @@ public class Turret implements Subsystem {
     private static final double H_DEGREES_PER_TICK = 0;
     private static final double H_MIN_DEGREES = H_MIN_ENCODER_TICKS * H_DEGREES_PER_TICK;
     private static final double H_MAX_DEGREES = H_MAX_ENCODER_TICKS * H_DEGREES_PER_TICK;
-    private static final double H_TOLERANCE = 1;
+
+    private static final double H_TOLERANCE = 2;
+    private static final double H_MIN_PERCENT = 0.08;
+    private static final double H_MAX_PERCENT = 0.25;
+
     public final double DEFAULT_HORIZONTAL_ENCODER_PERCENT = 0.2;
 
     //Constants aquired from CAD team used for trig calculations (millimeters):
@@ -97,7 +101,7 @@ public class Turret implements Subsystem {
         if (Math.abs(setpoint) > H_TOLERANCE) {
             //FIXME: Move the magic numbers to constants. Document them.
             double percent = Math.abs(setpoint) / 40;
-            percent = Math.max(0.1, Math.min(0.25, percent));
+            percent = Math.max(H_MIN_PERCENT, Math.min(H_MAX_PERCENT, percent));
             if (setpoint < 0) { percent = -percent; }
             percent = -percent;
             turretMotor.set(ControlMode.PercentOutput, percent);
