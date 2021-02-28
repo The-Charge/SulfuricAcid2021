@@ -1,4 +1,4 @@
 X,Y,Tangent X,Tangent Y,Fixed Theta,Reversed,Name
-0.0,-1.0,1.0,0.0,true,false,
-2.0,0.0,1.6664777598150056,0.03548722763580299,false,false,
-5.0,-1.0,1.0,0.0,true,false,
+0.0,-2.0,2.0,0.0,true,false,
+1.5,0.0,2.0,0.0,true,false,
+5.0,0.0,1.0,0.0,true,false,
