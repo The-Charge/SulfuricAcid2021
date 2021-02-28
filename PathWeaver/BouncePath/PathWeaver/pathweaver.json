@@ -1,0 +1,9 @@
+{
+  "lengthUnit": "Meter",
+  "exportUnit": "Always Meters",
+  "maxVelocity": 1.5,
+  "maxAcceleration": 1.0,
+  "wheelBase": 0.749676776,
+  "gameName": "Bounce Path",
+  "outputDir": "../../../src/main/deploy"
+}
