@@ -3,8 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-//import edu.wpi.first.wpilibj.
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -13,8 +11,6 @@ public class Indexer implements Subsystem {
 
     private WPI_TalonSRX indexerMotorLF;
     private WPI_TalonSRX indexerMotorRF;
-    // FIXME: This is unused. Remove.
-    private Intake m_intake;
     private DigitalInput ballIn;
     private int timer;
 
@@ -74,7 +70,6 @@ public class Indexer implements Subsystem {
         if (shooterOpen || setSpeed < 0) {
 
         } else if (m_stopper.ballSensedOut()) {
-            // FIXME: Move the magic numbers (0.1, 0.4) to constants. Document them
             setSpeed = BALL_SENSED_OUT_SPEED * setSpeed;
         } else if (ballSensedIn()) {
             setSpeed = BALL_SENSED_IN_SPEED * setSpeed;
@@ -85,17 +80,6 @@ public class Indexer implements Subsystem {
         SmartDashboard.putNumber("Indexer PID Val", setSpeed);
         indexerMotorLF.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
         // indexerMotorRF.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
-    }
-
-    private boolean wasBallSensedIn() {
-        if (ballSensedIn()) {
-            timer = 0;
-        }
-        timer++;
-        if (timer < 30)
-            return true;
-        else
-            return false;
     }
 
     // CHECK: was originally int

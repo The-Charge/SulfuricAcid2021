@@ -1,47 +1,54 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.*;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AutonCommandFactory;
+import frc.robot.commands.BallCounterReset;
+import frc.robot.commands.BarrelRacing;
+import frc.robot.commands.Bounce;
+import frc.robot.commands.ClimberBrake;
+import frc.robot.commands.ClimberRun;
+import frc.robot.commands.ClimberUnBrake;
+import frc.robot.commands.CloseStopper;
+import frc.robot.commands.DriveXFeetMM;
+import frc.robot.commands.GalacticSearchBlueA;
+import frc.robot.commands.GalacticSearchBlueB;
+import frc.robot.commands.GalacticSearchRedA;
+import frc.robot.commands.GalacticSearchRedB;
+import frc.robot.commands.Index;
+import frc.robot.commands.InvertDrive;
+import frc.robot.commands.OpenStopper;
+import frc.robot.commands.ResetTurretEncoder;
+import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunTurretManual;
+import frc.robot.commands.RunTurretVision;
+import frc.robot.commands.ShiftHigh;
+import frc.robot.commands.ShiftLow;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.Slalom;
+import frc.robot.commands.TankDrive;
+import frc.robot.commands.ToggleLockStraight;
+import frc.robot.commands.TurnOffLights;
+import frc.robot.commands.TurretToZero;
+import frc.robot.commands.XPercentSpeed;
+import frc.robot.subsystems.BallSensor;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Cooling;
 import frc.robot.subsystems.Drivetrain;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.List;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Transform2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
-import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.OIConstants;
-
-import static edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.Shifters;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Stopper;
+import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since

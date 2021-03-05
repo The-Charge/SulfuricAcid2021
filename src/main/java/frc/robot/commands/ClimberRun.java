@@ -21,8 +21,7 @@ public class ClimberRun extends CommandBase {
     @Override
     public void initialize() {
         m_climber.setPercentVBus();
-        // FIXME: What if m_power is 0?
-        if (m_power < 0)
+        if (m_power <= 0)
             m_climber.engageBrakes();
         if (m_power > 0)
             m_climber.disengageBrake();
@@ -31,7 +30,7 @@ public class ClimberRun extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        if (m_power < 0) {
+        if (m_power <= 0) {
             m_climber.engageBrakes();
             m_climber.set(m_power);
             m_climber.limitCurrent();

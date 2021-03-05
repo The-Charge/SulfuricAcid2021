@@ -1,9 +1,7 @@
 package frc.robot.subsystems;
 
-//import frc.robot.MathUtil;
 import edu.wpi.first.wpilibj.SerialPort.Port; //might change to I2C
 import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;

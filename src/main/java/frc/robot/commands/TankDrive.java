@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.MathUtil2619;
 import frc.robot.RobotContainer;
 
 public class TankDrive extends CommandBase {
@@ -29,9 +30,8 @@ public class TankDrive extends CommandBase {
         rightSpeed = -RobotContainer.rightJoystick.getY();
         leftSpeed = -RobotContainer.leftJoystick.getY();
 
-        // FIXME: Find new MathUtil import
-        // rightSpeed = MathUtil.adjSpeed(rightSpeed);
-        // leftSpeed = MathUtil.adjSpeed(leftSpeed);
+        rightSpeed = MathUtil2619.adjSpeed(rightSpeed);
+        leftSpeed = MathUtil2619.adjSpeed(leftSpeed);
 
         SmartDashboard.putNumber("DriveTrain leftSpeed", leftSpeed);
         SmartDashboard.putNumber("DriveTrain rightSpeed", rightSpeed);
