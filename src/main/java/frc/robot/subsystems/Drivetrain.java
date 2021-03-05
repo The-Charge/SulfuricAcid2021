@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 //import frc.robot.MathUtil;
 import edu.wpi.first.wpilibj.SerialPort.Port; //might change to I2C
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -46,6 +48,8 @@ public class Drivetrain extends SubsystemBase {
 
     // Odometry class for tracking robot pose
     public final DifferentialDriveOdometry m_odometry;
+    // private final DifferentialDrive m_diffDrive = new
+    // DifferentialDrive(m_leftMotors, m_rightMotors);
 
     // PID Constants (all values still need to be changed, these are values for
     // plybot)
@@ -92,18 +96,23 @@ public class Drivetrain extends SubsystemBase {
 
     public Drivetrain() {
         initializeMotors();
+        setBrakeMode();
         resetEncoders();
+
         m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
         pidController = new PIDController(PIDTURN_P, PIDTURN_I, PIDTURN_D);
+
         setDefaultCommand(new TankDrive(this));
     }
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        SmartDashboard.putNumber("Drive Train/left", leftFrontMotor.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Drive Train/right", rightFrontMotor.getSelectedSensorPosition(0));
         m_odometry.update(Rotation2d.fromDegrees(getHeading()),
                 leftFrontMotor.getSelectedSensorPosition(0) * DriveConstants.kEncoderDistancePerPulse,
-                -rightFrontMotor.getSelectedSensorPosition(0) * DriveConstants.kEncoderDistancePerPulse);
+                rightFrontMotor.getSelectedSensorPosition(0) * DriveConstants.kEncoderDistancePerPulse);
     }
 
     // Put methods for controlling this subsystem
@@ -259,7 +268,7 @@ public class Drivetrain extends SubsystemBase {
         // TIMEOUT_MS);
         rightFrontMotor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
         rightFrontMotor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
-
+        
         leftFrontMotor.setSelectedSensorPosition(0, MotionMagicPIDIndex, TIMEOUT_MS);
         rightFrontMotor.setSelectedSensorPosition(0, MotionMagicPIDIndex, TIMEOUT_MS);
 
@@ -281,7 +290,10 @@ public class Drivetrain extends SubsystemBase {
                 || (Math.abs(this.rightFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex)
                         - MotionMagicDistance) < 500);// ||
                                                       // this.leftFrontMotor.getSelectedSensorPosition(MotionMagicPIDIndex)
-                                                      // < -MotionMagicDistance + 6000)
+                                                      // <
+                                                      // -MotionMagicDistance
+                                                      // +
+                                                      // 6000)
     }
 
     public void ResestEncoder() {
@@ -301,7 +313,7 @@ public class Drivetrain extends SubsystemBase {
     public DifferentialDriveWheelSpeeds getWheelSpeeds() {
         return new DifferentialDriveWheelSpeeds(
                 leftFrontMotor.getSelectedSensorVelocity() * DriveConstants.kEncoderDistancePerPulse,
-                -rightFrontMotor.getSelectedSensorVelocity() * DriveConstants.kEncoderDistancePerPulse);
+                rightFrontMotor.getSelectedSensorVelocity() * DriveConstants.kEncoderDistancePerPulse);
     }
 
     /**
@@ -315,15 +327,17 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     * Controls the left and right sides of the drive directly with voltages.
+     * Controls the left and right sides of the drive directly with `s.
      *
      * @param leftVolts  the commanded left output
      * @param rightVolts the commanded right output
      */
     public void tankDriveVolts(double leftVolts, double rightVolts) {
         m_leftMotors.setVoltage(leftVolts);
-        m_rightMotors.setVoltage(-rightVolts);
-        // m_drive.feed();
+        m_rightMotors.setVoltage(rightVolts);
+        SmartDashboard.putNumber("Left Encoder", leftFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("Right Encoder", rightFrontMotor.getSelectedSensorPosition());
+        // m_diffDrive.feed();
     }
 
     /**
@@ -352,7 +366,9 @@ public class Drivetrain extends SubsystemBase {
      * @return the robot's heading in degrees, from -180 to 180
      */
     public double getHeading() {
-        return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+        return m_gyro.getRotation2d().getDegrees();
+        // return Math.IEEEremainder(m_gyro.getAngle(), 360) *
+        // (DriveConstants.kGyroReversed ? -1.0 : 1.0);
     }
 
     public void initializeMotors() {
