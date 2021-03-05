@@ -61,15 +61,15 @@ public class RobotContainer {
   //public ColorSensor colorSensor = new ColorSensor();
   public Drivetrain drivetrain = new Drivetrain();
   public Turret turret = new Turret();
-  public Lights lights = new Lights(turret);
+  public Lights lights = new Lights();
   public Shifters shifters = new Shifters();
   public Climber climber = new Climber();
   public Intake intake = new Intake();
   public Stopper stopper = new Stopper();
   public Indexer indexer = new Indexer(stopper);
   public Shooter shooter = new Shooter();
-  public BallSensor ballSensor = new BallSensor(indexer, stopper);
-  public Cooling cooling = new Cooling(drivetrain, shooter);
+  public BallSensor ballSensor = new BallSensor();
+  public Cooling cooling = new Cooling();
 
   //JOYSTICKS
   public static Joystick leftJoystick;
