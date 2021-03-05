@@ -99,8 +99,7 @@ public class Shooter implements Subsystem {
         return (PercentSpeed < AtSpeed);
     }
 
-    public boolean checkTemp()
-    {
+    public boolean checkTemp() {
         SmartDashboard.putNumber("Temp", motorShooter.getTemperature());
         if (motorShooter.getTemperature() > 35)
             return true;
@@ -108,6 +107,4 @@ public class Shooter implements Subsystem {
             return false;
     }
 
-    
-
-
+}

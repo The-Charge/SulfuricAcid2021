@@ -6,6 +6,7 @@ import frc.robot.subsystems.Lights;
 public class TurnOffLights extends CommandBase {
     private Lights m_lights;
 
+    public TurnOffLights(Lights lights) {
         m_lights = lights;
         addRequirements(m_lights);
     }

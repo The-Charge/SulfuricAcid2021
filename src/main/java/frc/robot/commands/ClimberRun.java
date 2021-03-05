@@ -44,10 +44,9 @@ public class ClimberRun extends CommandBase {
         return false;
     }
 
-    Called once a
-
-    @
-
+    // Called once after isFinished returns true
+    @Override
+    public void end(boolean interrupted) {
         m_climber.stopMotor();
     }
 }

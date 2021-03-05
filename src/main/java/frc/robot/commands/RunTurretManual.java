@@ -29,11 +29,10 @@ public class RunTurretManual extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-     
-         m_turretHorizontal = -RobotContainer.buttonBox.getY();
-         m_turret.runHorizontalManual(-m_turretHorizontal); 
-        
-      
+
+        m_turretHorizontal = -RobotContainer.buttonBox.getY();
+        m_turret.runHorizontalManual(-m_turretHorizontal);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

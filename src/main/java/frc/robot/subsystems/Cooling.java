@@ -22,14 +22,13 @@ public class Cooling implements Subsystem {
     }
     // Put code here to be run every loop
 
-    public void cool()
-    {
+    public void cool() {
         SmartDashboard.putBoolean("Shooter Temp", m_shooter.checkTemp());
         if (m_drivetrain.checkTemp() || m_shooter.checkTemp())
             coolingSolenoid.set(true);
         else
             coolingSolenoid.set(false);
-    // Put methods for controlling this subsystem
+        // Put methods for controlling this subsystem
     }
     // here. Call these from Commands.
 }

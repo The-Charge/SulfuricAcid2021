@@ -36,7 +36,7 @@ public class Stopper implements Subsystem {
     public void closeStopper() {
         // if (!ballSensed()) stopperSolenoid.set(true);
         // else new CloseStopper(this);
-                stopperSolenoid.set(true);
+        stopperSolenoid.set(true);
     }
 
 }

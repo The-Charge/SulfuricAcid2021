@@ -32,6 +32,6 @@ public class Shifters implements Subsystem {
     }
 
     public boolean isLow() {
-                return !shifterSolenoid.get();
+        return !shifterSolenoid.get();
     }
 }

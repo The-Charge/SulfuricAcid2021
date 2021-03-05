@@ -70,7 +70,5 @@ public class Constants {
         // seconds
         public static final double kRamseteB = 2;
         public static final double kRamseteZeta = 0.7;
-    }}
-
-
-
+    }
+}

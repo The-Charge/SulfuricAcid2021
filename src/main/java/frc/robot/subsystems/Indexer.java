@@ -121,8 +121,7 @@ public class Indexer implements Subsystem {
         indexerMotorLF.setNeutralMode(NeutralMode.Brake);
     }
 
-    public boolean ballSensedIn(){
-
-            return ballIn .get();
+    public boolean ballSensedIn() {
+        return ballIn.get();
     }
 }

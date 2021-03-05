@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -90,6 +91,8 @@ public class Drivetrain extends SubsystemBase {
     // private static final AHRS ahrs = new AHRS(Port.kMXP);
 
     private static boolean isReversed = false;
+    private static boolean speedMultiplierActive = false;
+    private static double speedMultiplier = 1;
 
     public Drivetrain() {
         initializeMotors();
@@ -123,6 +126,11 @@ public class Drivetrain extends SubsystemBase {
             leftSpeed = -1 * leftSpeed;
             rightSpeed = -1 * rightSpeed;
         }
+        if (speedMultiplierActive) {
+            leftSpeed = speedMultiplier * leftSpeed;
+            rightSpeed = speedMultiplier * rightSpeed;
+        }
+
         SmartDashboard.putNumber("Drivetrain leftSpeed", leftSpeed);
         SmartDashboard.putNumber("Drivetrain rightSpeed", rightSpeed);
         runRaw(rightSpeed, leftSpeed);
@@ -181,8 +189,30 @@ public class Drivetrain extends SubsystemBase {
         return isReversed;
     }
 
+    public boolean getMultiplierSpeed() {
+        return speedMultiplierActive;
+    }
+
     public void setReversed(boolean r) {
         isReversed = r;
+    }
+
+    /**
+     * Toggles a customizable slower speed mode in the same way QuarterSpeed or
+     * HalfSpeed might. If this mode is already active but with a different
+     * multiplier, the mode stays active and the multiplier is updated. Otherwise,
+     * it should toggle as expected.
+     * 
+     * @param active     the desired active/inactive state of the mode
+     * @param multiplier the desired speed multiplier [0-1]
+     */
+    public void setSpeedMultiplier(boolean active, double multiplier) {
+        if (multiplier == speedMultiplier || !speedMultiplierActive) // this mode is only toggled if: this mode is off
+                                                                     // already OR the same button that turned this mode
+                                                                     // on was pressed again
+            speedMultiplierActive = active;
+        if (speedMultiplierActive) // only sets the new speed coefficient if this drive mode is being turned on
+            speedMultiplier = multiplier;
     }
 
     public void writePIDs(double output) {
@@ -238,7 +268,7 @@ public class Drivetrain extends SubsystemBase {
         // TIMEOUT_MS);
         rightFrontMotor.configMotionAcceleration(MotionMagicAcceleration, TIMEOUT_MS);
         rightFrontMotor.configMotionCruiseVelocity(MotionMagicVelocity, TIMEOUT_MS);
-
+        
         leftFrontMotor.setSelectedSensorPosition(0, MotionMagicPIDIndex, TIMEOUT_MS);
         rightFrontMotor.setSelectedSensorPosition(0, MotionMagicPIDIndex, TIMEOUT_MS);
 

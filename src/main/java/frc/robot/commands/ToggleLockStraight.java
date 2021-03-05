@@ -30,6 +30,7 @@ public class ToggleLockStraight extends CommandBase {
         leftSpeed = -RobotContainer.leftJoystick.getY();
         avgSpeed = (rightSpeed + leftSpeed) / 2;
 
+        SmartDashboard.putNumber("DriveTrain RightSpeed: ", rightSpeed);
         SmartDashboard.putNumber("DriveTrain LeftSpeed: ", leftSpeed);
         SmartDashboard.putNumber("AvgSpeed: ", avgSpeed);
         m_subsystem.run(avgSpeed, avgSpeed);
