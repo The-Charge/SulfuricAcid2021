@@ -16,9 +16,9 @@ public class RunIntake extends CommandBase {
 
     // Called just before this Command runs the first time
     @Override
-    public void initialize() {     
-    }
+    public void initialize() {
 
+    
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {

@@ -13,7 +13,7 @@ public class RunTurretVision extends CommandBase {
     private double alignmentAngle;
     private double distance;
     private final Turret m_turret;
-    
+
     public RunTurretVision(Turret turret, double vertical) {
         m_turret = turret;
         verticalAngle = vertical;
@@ -24,24 +24,26 @@ public class RunTurretVision extends CommandBase {
     @Override
     public void initialize() {
         m_turret.enableVision();
-        visionResults = new double[] {0, 0};
+        visionResults = new double[] { 0, 0 };
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
         // Result key:
-        //  0. timestamp
-        //  1. success (0/1)
-        //  2. distance
-        //  3. horizontal angle
-        //  4. vertical angle
-        //  5. alignment angle
-        //  6. inner port (0/1)
-        //  7. instantaneous FPS
-        //FIXME: May want to consider moving the vision processing to it's own subsystem (in periodic())
-        // That way, you can see/test values without having to take control of the turret
-        visionResults = SmartDashboard.getNumberArray("Vision/result", new double[] {0, 0});
+        // 0. timestamp
+        // 1. success (0/1)
+        // 2. distance
+        // 3. horizontal angle
+        // 4. vertical angle
+        // 5. alignment angle
+        // 6. inner port (0/1)
+        // 7. instantaneous FPS
+        // FIXME: May want to consider moving the vision processing to it's own
+        // subsystem (in periodic())
+        // That way, you can see/test values without having to take control of the
+        // turret
+        visionResults = SmartDashboard.getNumberArray("Vision/result", new double[] { 0, 0 });
         if (visionResults[1] == 0) {
             SmartDashboard.putString("Vision Status", "none");
         } else {
@@ -52,9 +54,9 @@ public class RunTurretVision extends CommandBase {
             alignmentAngle = visionResults[5];
 
             m_turret.gotoHorizontalAngle(horizontalAngle);
-            //m_turret.setVerticalAngle(verticalAngle);
-           
+            // m_turret.setVerticalAngle(verticalAngle);
 
+            
             if (Math.abs(horizontalAngle) < H_TOLERANCE) {
                 SmartDashboard.putString("Vision Status", "locked");
             } else {

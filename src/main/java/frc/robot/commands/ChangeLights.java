@@ -1,13 +1,14 @@
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lights;
 
 public class ChangeLights extends CommandBase {
     private Lights m_lights;
-   
+
     public ChangeLights(Lights lights) {
         m_lights = lights;
-    
+
         addRequirements(m_lights);
     }
 

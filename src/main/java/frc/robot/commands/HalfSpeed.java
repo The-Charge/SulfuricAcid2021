@@ -16,13 +16,14 @@ public class HalfSpeed extends TankDrive {
         rightSpeed = -RobotContainer.rightJoystick.getY() * 0.5;
         leftSpeed = -RobotContainer.leftJoystick.getY() * 0.5;
 
-        //FIXME: Find MathUtil import        
-        //rightSpeed = MathUtil.adjSpeed(rightSpeed);
-        //leftSpeed = MathUtil.adjSpeed(leftSpeed);
+        // FIXME: Find MathUtil import
+        // rightSpeed = MathUtil.adjSpeed(rightSpeed);
+        // leftSpeed = MathUtil.adjSpeed(leftSpeed);
 
-        /*SmartDashboard.putNumber("Drivetrain HalfSpeedL", leftSpeed);
-        SmartDashboard.putNumber("Drivetrain HalfSpeedR", rightSpeed);
-        */
+        /*
+         * SmartDashboard.putNumber("Drivetrain HalfSpeedL", leftSpeed);
+         * SmartDashboard.putNumber("Drivetrain HalfSpeedR", rightSpeed);
+         */
 
         m_subsystem.run(leftSpeed, rightSpeed);
     }

@@ -32,14 +32,15 @@ public class Index extends CommandBase {
         m_indexer.initSpeedMode();
         if (m_speed > 0)
             SmartDashboard.putBoolean("Indexer", true);
-        else SmartDashboard.putBoolean("Indexer", false);
+        else
+            SmartDashboard.putBoolean("Indexer", false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
         m_indexer.setPercentSpeedPID(m_speed, shooterOpen);
-        //SmartDashboard.putNumber("Y AXIS VAL", yAxisVal);
+        // SmartDashboard.putNumber("Y AXIS VAL", yAxisVal);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -53,6 +54,6 @@ public class Index extends CommandBase {
     public void end(boolean interrupted) {
         SmartDashboard.putBoolean("Indexer", false);
         m_indexer.stop();
-       // Robot.indexer.setPercentVBus();
+        // Robot.indexer.setPercentVBus();
     }
 }

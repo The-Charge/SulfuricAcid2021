@@ -10,19 +10,18 @@ import frc.robot.subsystems.Shooter;
  */
 public class Cool extends CommandBase {
     private final Cooling m_cooling;
-    
+
     public Cool(Cooling cooling) {
 
-    m_cooling = cooling;
+        m_cooling = cooling;
         addRequirements(m_cooling);
     }
 
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-       
-    }
 
+    
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {

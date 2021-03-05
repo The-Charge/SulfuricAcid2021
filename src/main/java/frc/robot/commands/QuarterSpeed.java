@@ -23,13 +23,13 @@ public class QuarterSpeed extends TankDrive {
         leftSpeed = -RobotContainer.leftJoystick.getY() * 0.25;
         m_subsystem.run(leftSpeed, rightSpeed);
 
-        //FIXME: Find MathUtil Import
-        //rightSpeed = MathUtil.adjSpeed(rightSpeed);
-        //leftSpeed = MathUtil.adjSpeed(leftSpeed);
+        // FIXME: Find MathUtil Import
+        // rightSpeed = MathUtil.adjSpeed(rightSpeed);
+        // leftSpeed = MathUtil.adjSpeed(leftSpeed);
         /*
-        SmartDashboard.putNumber("Drivetrain QuarterSpeedL", leftSpeed);
-        SmartDashboard.putNumber("Drivetrain QuarterSpeedR", rightSpeed);
-        */
+         * SmartDashboard.putNumber("Drivetrain QuarterSpeedL", leftSpeed);
+         * SmartDashboard.putNumber("Drivetrain QuarterSpeedR", rightSpeed);
+         */
         m_subsystem.run(leftSpeed, rightSpeed);
     }
 

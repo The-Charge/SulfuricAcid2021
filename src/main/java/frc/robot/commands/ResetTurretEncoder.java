@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Turret;
 
 public class ResetTurretEncoder extends CommandBase {
-    
+
     private final Turret m_turret;
 
     public ResetTurretEncoder(Turret turret) {
         m_turret = turret;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_turret);
-      }
+    }
 
     // Called just before this Command runs the first time
     @Override

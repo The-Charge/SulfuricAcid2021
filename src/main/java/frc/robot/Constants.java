@@ -30,45 +30,47 @@ public class Constants {
         public static final int kRightMotor1Port = 7;
         public static final int kRightMotor2Port = 0;
         public static final int kRightMotor3Port = 8;
-        //public static final int[] kLeftEncoderPorts = new int[]{1,2,3};
-        //public static final int[] kRightEncoderPorts = new int[]{7,0,8};
+        // public static final int[] kLeftEncoderPorts = new int[]{1,2,3};
+        // public static final int[] kRightEncoderPorts = new int[]{7,0,8};
         // These are never called
         // public static final boolean kLeftEncoderReversed = false;
         // public static final boolean kRightEncoderReversed = true;
-    
+
         public static final double kTrackwidthMeters = 0.749676776;
-        public static final DifferentialDriveKinematics kDriveKinematics =
-            new DifferentialDriveKinematics(kTrackwidthMeters);
-    
-        public static final int kEncoderCPR = 14000;  // 15525
+        public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
+                kTrackwidthMeters);
+
+        public static final int kEncoderCPR = 14000; // 15525
         public static final double kWheelDiameterMeters = 0.152;
         public static final double kEncoderDistancePerPulse =
-            // Assumes the encoders are directly mounted on the wheel shafts
-            (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
-    
+                // Assumes the encoders are directly mounted on the wheel shafts
+                (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+
         public static final boolean kGyroReversed = true;
-      //TODO test/tune these values
-        public static final double ksVolts = 0.501; //.501
+        // TODO test/tune these values
+        public static final double ksVolts = 0.501; // .501
         public static final double kvVoltSecondsPerMeter = 1.6;
         public static final double kaVoltSecondsSquaredPerMeter = 0.176;
-    
+
         // Example value only - as above, this must be tuned for your drive!
         public static final double kPDriveVel = 4;
-      }
-    
-      public static final class OIConstants {
+    }
+
+    public static final class OIConstants {
         public static final int kDriverControllerPort = 1;
-      }
-    
-      public static final class AutoConstants {
+    }
+
+    public static final class AutoConstants {
         public static final double initElevation = .8;
         public static final double initShootSpeed = 0.65;
-        public static final double kMaxSpeedMetersPerSecond = 1.5; //1.0
-        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; //.5
-    
-        // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
+        public static final double kMaxSpeedMetersPerSecond = 1.5; // 1.0
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; // .5
+
+        // Reasonable baseline values for a RAMSETE follower in units of meters and
+        // seconds
         public static final double kRamseteB = 2;
         public static final double kRamseteZeta = 0.7;
-      } 
-}
+    }}
+
+
 

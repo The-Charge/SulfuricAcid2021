@@ -11,9 +11,8 @@ public class ShiftLow extends CommandBase {
         m_subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_subsystem);
-      }
+    }
 
-    // Called just before this Command runs the first time
     @Override
     public void initialize() {
         m_subsystem.shiftLow();

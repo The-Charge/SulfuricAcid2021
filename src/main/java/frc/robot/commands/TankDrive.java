@@ -13,7 +13,7 @@ public class TankDrive extends CommandBase {
         m_subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
-      }
+    }
 
     // Called just before this Command runs the first time
     @Override
@@ -29,19 +29,17 @@ public class TankDrive extends CommandBase {
         rightSpeed = -RobotContainer.rightJoystick.getY();
         leftSpeed = -RobotContainer.leftJoystick.getY();
 
-        //FIXME: Find new MathUtil import
-        //rightSpeed = MathUtil.adjSpeed(rightSpeed);
-        //leftSpeed = MathUtil.adjSpeed(leftSpeed);
+        // FIXME: Find new MathUtil import
+        // rightSpeed = MathUtil.adjSpeed(rightSpeed);
+        // leftSpeed = MathUtil.adjSpeed(leftSpeed);
 
         SmartDashboard.putNumber("DriveTrain leftSpeed", leftSpeed);
         SmartDashboard.putNumber("DriveTrain rightSpeed", rightSpeed);
 
-
         m_subsystem.run(leftSpeed, rightSpeed);
-        //m_subsystem.tankDriveVolts(leftSpeed, rightSpeed);
-  
-    }
+        // m_subsystem.tankDriveVolts(leftSpeed, rightSpeed);
 
+    
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
