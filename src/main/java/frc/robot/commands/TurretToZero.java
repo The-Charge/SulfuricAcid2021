@@ -7,7 +7,7 @@ import frc.robot.subsystems.Turret;
 import frc.robot.Robot;
 
 public class TurretToZero extends CommandBase {
-    
+
     private final Turret m_turret;
     private boolean done;
 
@@ -15,7 +15,7 @@ public class TurretToZero extends CommandBase {
         m_turret = turret;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_turret);
-      }
+    }
 
     // Called just before this Command runs the first time
     @Override

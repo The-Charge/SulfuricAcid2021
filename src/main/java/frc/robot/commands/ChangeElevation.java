@@ -9,12 +9,13 @@ import frc.robot.subsystems.Turret;
 public class ChangeElevation extends CommandBase {
     private double turretHorizontal, m_turretVertical;
     private final Turret m_turret;
-    
+
     public ChangeElevation(Turret turret, double turretVertical) {
         m_turret = turret;
         m_turretVertical = turretVertical;
         addRequirements(m_turret);
     }
+
     // Called just before this Command runs the first time
     public void execute() {
         m_turret.setRawVertical(m_turretVertical);
@@ -25,5 +26,5 @@ public class ChangeElevation extends CommandBase {
     public boolean isFinished() {
         return true;
     }
-      
+
 }

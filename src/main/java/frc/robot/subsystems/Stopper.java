@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Stopper implements Subsystem {
 
-private DigitalInput ballSensor;
-private Solenoid stopperSolenoid;
+    private DigitalInput ballSensor;
+    private Solenoid stopperSolenoid;
 
     public Stopper() {
 
-    ballSensor = new DigitalInput(1);
-    stopperSolenoid = new Solenoid(0,2);
-    
-    stopperSolenoid.set(true);
-        
+        ballSensor = new DigitalInput(1);
+        stopperSolenoid = new Solenoid(0, 2);
+
+        stopperSolenoid.set(true);
+
     }
 
     @Override
@@ -25,17 +25,17 @@ private Solenoid stopperSolenoid;
         SmartDashboard.putBoolean("Stopper Ball Sensed:", ballSensor.get());
     }
 
-    public boolean ballSensedOut(){
+    public boolean ballSensedOut() {
         return ballSensor.get();
     }
 
-    public void openStopper(){
+    public void openStopper() {
         stopperSolenoid.set(false);
     }
 
-    public void closeStopper(){
-        //if (!ballSensed()) stopperSolenoid.set(true);
-        //else new CloseStopper(this);
+    public void closeStopper() {
+        // if (!ballSensed()) stopperSolenoid.set(true);
+        // else new CloseStopper(this);
         stopperSolenoid.set(true);
     }
 

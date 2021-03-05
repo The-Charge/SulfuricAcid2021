@@ -6,10 +6,10 @@ import frc.robot.subsystems.Stopper;
 
 public class OpenStopper extends InstantCommand {
     private final Stopper m_stopper;
-    
+
     public OpenStopper(Stopper stopper) {
 
-    m_stopper = stopper;
+        m_stopper = stopper;
         addRequirements(m_stopper);
     }
 

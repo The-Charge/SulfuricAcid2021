@@ -54,253 +54,272 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
 
 public class RobotContainer {
 
-  private static RobotContainer m_robotContainer = new RobotContainer();
+    private static RobotContainer m_robotContainer = new RobotContainer();
 
-  // SUBSYSTEMS
-  // public ControlPanel controlPanel = new ControlPanel();
-  // public ColorSensor colorSensor = new ColorSensor();
-  public Drivetrain drivetrain = new Drivetrain();
-  public Turret turret = new Turret();
-  public Lights lights = new Lights(turret);
-  public Shifters shifters = new Shifters();
-  public Climber climber = new Climber();
-  public Intake intake = new Intake();
-  public Stopper stopper = new Stopper();
-  public Indexer indexer = new Indexer(stopper);
-  public Shooter shooter = new Shooter();
-  public BallSensor ballSensor = new BallSensor(indexer, stopper);
-  public Cooling cooling = new Cooling(drivetrain, shooter);
+    // SUBSYSTEMS
+    // public ControlPanel controlPanel = new ControlPanel();
+    // public ColorSensor colorSensor = new ColorSensor();
+    public Drivetrain drivetrain = new Drivetrain();
+    public Turret turret = new Turret();
+    public Lights lights = new Lights(turret);
+    public Shifters shifters = new Shifters();
+    public Climber climber = new Climber();
+    public Intake intake = new Intake();
+    public Stopper stopper = new Stopper();
+    public Indexer indexer = new Indexer(stopper);
+    public Shooter shooter = new Shooter();
+    public BallSensor ballSensor = new BallSensor(indexer, stopper);
+    public Cooling cooling = new Cooling(drivetrain, shooter);
 
-  // JOYSTICKS
-  public static Joystick leftJoystick;
-  public static Joystick rightJoystick;
-  public static Joystick buttonBox;
-  public static XboxController Xbox;
+    // JOYSTICKS
+    public static Joystick leftJoystick;
+    public static Joystick rightJoystick;
+    public static Joystick buttonBox;
+    public static XboxController Xbox;
 
-  // JOYSTICK BUTTONS
-  public JoystickButton shiftHighWPBtn;
-  public JoystickButton shiftHighWHBtn;
-  public JoystickButton shiftLowBtn;
-  public JoystickButton quarterSpeedBtn;
-  public JoystickButton halfSpeedBtn;
-  public JoystickButton toggleLockStraightBtn;
-  public JoystickButton invertDriveBtn;
-  public JoystickButton shootBtn;
-  public JoystickButton manualElevation;
-  public JoystickButton driveXFeetBtn;
-  public JoystickButton climbUp;
-  public JoystickButton indexBtn;
-  public JoystickButton positionControlBtn;
-  public JoystickButton rotationControlBtn;
-  public JoystickButton runIntakeBtn;
-  public JoystickButton runIntakeInverseBtn;
-  public JoystickButton sensorColorBtn;
-  public JoystickButton zeroBalls;
-  public JoystickButton climbDown;
-  public JoystickButton visionOverrideBtn;
-  public JoystickButton runIntakeIndexerBtn;
-  public JoystickButton aButton;
-  public JoystickButton bButton;
-  public JoystickButton xButton;
-  public JoystickButton yButton;
-  public JoystickButton openStopperBtn;
+    // JOYSTICK BUTTONS
+    public JoystickButton shiftHighWPBtn;
+    public JoystickButton shiftHighWHBtn;
+    public JoystickButton shiftLowBtn;
+    public JoystickButton quarterSpeedBtn;
+    public JoystickButton halfSpeedBtn;
+    public JoystickButton toggleLockStraightBtn;
+    public JoystickButton invertDriveBtn;
+    public JoystickButton shootBtn;
+    public JoystickButton manualElevation;
+    public JoystickButton driveXFeetBtn;
+    public JoystickButton climbUp;
+    public JoystickButton indexBtn;
+    public JoystickButton positionControlBtn;
+    public JoystickButton rotationControlBtn;
+    public JoystickButton runIntakeBtn;
+    public JoystickButton runIntakeInverseBtn;
+    public JoystickButton sensorColorBtn;
+    public JoystickButton zeroBalls;
+    public JoystickButton climbDown;
+    public JoystickButton visionOverrideBtn;
+    public JoystickButton runIntakeIndexerBtn;
+    public JoystickButton aButton;
+    public JoystickButton bButton;
+    public JoystickButton xButton;
+    public JoystickButton yButton;
+    public JoystickButton openStopperBtn;
 
-  public boolean realButtonBox = true;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+    public boolean realButtonBox = true;
+    SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  public RobotContainer() {
-    SmartDashboard.putData("TurnOffLights", new TurnOffLights(lights));
-    if (realButtonBox)
-      configureButtonBindings();
-    smartDashboardButtons();
-  }
+    public RobotContainer() {
+        SmartDashboard.putData("TurnOffLights", new TurnOffLights(lights));
+        if (realButtonBox)
+            configureButtonBindings();
+        smartDashboardButtons();
+    }
 
-  private void smartDashboardButtons() {
+    private void smartDashboardButtons() {
 
-    // SmartDashboard Buttons
-    SmartDashboard.putData("Run Vision", new RunTurretVision(turret, 0.4));
-    SmartDashboard.putData("Reset Encoder", new ResetTurretEncoder(turret));
-    SmartDashboard.putData("Zero Turret", new TurretToZero(turret));
-    SmartDashboard.putData("TankDrive", new TankDrive(drivetrain));
-    SmartDashboard.putData("ShiftHigh", new ShiftHigh(shifters));
-    SmartDashboard.putData("ShiftLow", new ShiftLow(shifters));
-    SmartDashboard.putData("Shoot: default", new Shoot(0.4, shooter));
-    // SmartDashboard.putData("TurretCommand", new TurretCommand());
-    SmartDashboard.putData("RunIntake: default", new RunIntake(intake, 0.4));
-    SmartDashboard.putData("DriveXFeetMM: default", new DriveXFeetMM(30, drivetrain));
-    // SmartDashboard.putData("TurnNDegreesAbsolute: default", new
-    // TurnNDegreesAbsolute(180));
-    SmartDashboard.putData("InvertDrive", new InvertDrive(drivetrain));
-    SmartDashboard.putData("QuarterSpeed", new XPercentSpeed(drivetrain, 0.25));
-    // SmartDashboard.putData("RotationControl", new RotationControl(controlPanel,
-    // colorSensor));
-    // SmartDashboard.putData("PositionControl", new PositionsControl(controlPanel,
-    // colorSensor));
-    SmartDashboard.putData("Index: default", new Index(indexer, 0.1));
-    SmartDashboard.putData("HalfSpeed", new XPercentSpeed(drivetrain, 0.5));
-    SmartDashboard.putData("ToggleLockStraight", new ToggleLockStraight(drivetrain));
-    // SmartDashboard.putData("ManualTurretElevation: default", new
-    // ManualTurretElevation(0));
-    // SmartDashboard.putData("ManualTurretElevationDegrees: default", new
-    // ManualTurretElevationDegrees(0));
-    // SmartDashboard.putData("RunTurretVision", new RunTurretVision());
-    // SmartDashboard.putData("RunTurretManual", new RunTurretManual());
-    SmartDashboard.putData("ClimberRun: up", new ClimberRun(climber, 0.5));
-    SmartDashboard.putData("ClimberRun: down", new ClimberRun(climber, -0.5));
-    // SmartDashboard.putData("RotationControl", new RotationControl(controlPanel,
-    // colorSensor));
-    // SmartDashboard.putData("PositionsControl", new PositionsControl(controlPanel,
-    // colorSensor));
-    SmartDashboard.putNumber("Degrees:", 0);
-    SmartDashboard.putNumber("TurnPID P:", 0.05);
-    SmartDashboard.putNumber("TurnPID I:", 0.00004);
-    SmartDashboard.putNumber("TurnPID D:", 0.0025);
-    SmartDashboard.putData("Set Balls 0", new BallCounterReset(ballSensor));
+        // SmartDashboard Buttons
+        SmartDashboard.putData("Run Vision", new RunTurretVision(turret, 0.4));
+        SmartDashboard.putData("Reset Encoder", new ResetTurretEncoder(turret));
+        SmartDashboard.putData("Zero Turret", new TurretToZero(turret));
+        SmartDashboard.putData("TankDrive", new TankDrive(drivetrain));
+        SmartDashboard.putData("ShiftHigh", new ShiftHigh(shifters));
+        SmartDashboard.putData("ShiftLow", new ShiftLow(shifters));
+        SmartDashboard.putData("Shoot: default", new Shoot(0.4, shooter));
+        // SmartDashboard.putData("TurretCommand", new TurretCommand());
+        SmartDashboard.putData("RunIntake: default", new RunIntake(intake, 0.4));
+        SmartDashboard.putData("DriveXFeetMM: default", new DriveXFeetMM(30, drivetrain));
+        // SmartDashboard.putData("TurnNDegreesAbsolute: default", new
+        // TurnNDegreesAbsolute(180));
+        SmartDashboard.putData("InvertDrive", new InvertDrive(drivetrain));
+        SmartDashboard.putData("QuarterSpeed", new XPercentSpeed(drivetrain, 0.25));
+        // SmartDashboard.putData("RotationControl", new RotationControl(controlPanel,
+        // colorSensor));
+        // SmartDashboard.putData("PositionControl", new PositionsControl(controlPanel,
+        // colorSensor));
+        SmartDashboard.putData("Index: default", new Index(indexer, 0.1));
+        SmartDashboard.putData("HalfSpeed", new XPercentSpeed(drivetrain, 0.5));
+        SmartDashboard.putData("ToggleLockStraight", new ToggleLockStraight(drivetrain));
+        // SmartDashboard.putData("ManualTurretElevation: default", new
+        // ManualTurretElevation(0));
+        // SmartDashboard.putData("ManualTurretElevationDegrees: default", new
+        // ManualTurretElevationDegrees(0));
+        // SmartDashboard.putData("RunTurretVision", new RunTurretVision());
+        // SmartDashboard.putData("RunTurretManual", new RunTurretManual());
+        SmartDashboard.putData("ClimberRun: up", new ClimberRun(climber, 0.5));
+        SmartDashboard.putData("ClimberRun: down", new ClimberRun(climber, -0.5));
+        // SmartDashboard.putData("RotationControl", new RotationControl(controlPanel,
+        // colorSensor));
+        // SmartDashboard.putData("PositionsControl", new PositionsControl(controlPanel,
+        // colorSensor));
+        SmartDashboard.putNumber("Degrees:", 0);
+        SmartDashboard.putNumber("TurnPID P:", 0.05);
+        SmartDashboard.putNumber("TurnPID I:", 0.00004);
+        SmartDashboard.putNumber("TurnPID D:", 0.0025);
+        SmartDashboard.putData("Set Balls 0", new BallCounterReset(ballSensor));
 
-    // FIXME: These commands are causing the robot to quit when simulated, but they don't prevent the code from building.
-    // SmartDashboard.putData("AutonomousCorner", new AutonomousCorner(drivetrain));
-    // SmartDashboard.putData("AutonomousCorner2", new AutonomousCorner2(drivetrain));
-    // SmartDashboard.putData("AutonomousPortTR", new AutonomousPortTR(drivetrain));
-    // SmartDashboard.putData("AutonomousPortTR2", new AutonomousPortTR2(drivetrain));
-    // SmartDashboard.putData("AutonomousForward", new AutonomousForward(drivetrain));
-    // SmartDashboard.putData("AutonomousBackward", new AutonomousBackward(drivetrain));
-    // SmartDashboard.putData("AutonomousBackwardS2", new AutonomousBackwardS2(drivetrain));
-    // SmartDashboard.putData("AutonomousBackwardS", new AutonomousBackwardS(drivetrain));
-    // SmartDashboard.putData("AutonomousNew", new AutonomousNew(drivetrain));
-    // SmartDashboard.putData("GalacticSearchRedA", new GalacticSearchRedA(drivetrain));
-    // SmartDashboard.putData("GalacticSearchRedB", new GalacticSearchRedB(drivetrain));
-    // SmartDashboard.putData("GalacticSearchBlueB", new GalacticSearchBlueB(drivetrain));
-    // SmartDashboard.putData("GalacticSearchBlueA", new GalacticSearchBlueA(drivetrain));
-    // SmartDashboard.putData("BarrelRacing", new BarrelRacing(drivetrain));
-    // SmartDashboard.putData("Slalom", new Slalom(drivetrain));
-    // SmartDashboard.putData("Bounce", new Bounce(drivetrain));
-    // SmartDashboard.putData("AutonCommandFactory", new AutonCommandFactory());
+        // FIXME: These commands are causing the robot to quit when simulated, but they
+        // don't prevent the code from building.
+        // SmartDashboard.putData("AutonomousCorner", new AutonomousCorner(drivetrain));
+        // SmartDashboard.putData("AutonomousCorner2", new
+        // AutonomousCorner2(drivetrain));
+        // SmartDashboard.putData("AutonomousPortTR", new AutonomousPortTR(drivetrain));
+        // SmartDashboard.putData("AutonomousPortTR2", new
+        // AutonomousPortTR2(drivetrain));
+        // SmartDashboard.putData("AutonomousForward", new
+        // AutonomousForward(drivetrain));
+        // SmartDashboard.putData("AutonomousBackward", new
+        // AutonomousBackward(drivetrain));
+        // SmartDashboard.putData("AutonomousBackwardS2", new
+        // AutonomousBackwardS2(drivetrain));
+        // SmartDashboard.putData("AutonomousBackwardS", new
+        // AutonomousBackwardS(drivetrain));
+        // SmartDashboard.putData("AutonomousNew", new AutonomousNew(drivetrain));
+        // SmartDashboard.putData("GalacticSearchRedA", new
+        // GalacticSearchRedA(drivetrain));
+        // SmartDashboard.putData("GalacticSearchRedB", new
+        // GalacticSearchRedB(drivetrain));
+        // SmartDashboard.putData("GalacticSearchBlueB", new
+        // GalacticSearchBlueB(drivetrain));
+        // SmartDashboard.putData("GalacticSearchBlueA", new
+        // GalacticSearchBlueA(drivetrain));
+        // SmartDashboard.putData("BarrelRacing", new BarrelRacing(drivetrain));
+        // SmartDashboard.putData("Slalom", new Slalom(drivetrain));
+        // SmartDashboard.putData("Bounce", new Bounce(drivetrain));
+        // SmartDashboard.putData("AutonCommandFactory", new AutonCommandFactory());
 
-    // SmartDashboard.putData("Reinitialize PIDController:", new
-    // ReinitializePIDController());
-  }
+        // SmartDashboard.putData("Reinitialize PIDController:", new
+        // ReinitializePIDController());
+    }
 
-  private void configureButtonBindings() {
-    leftJoystick = new Joystick(0);
-    rightJoystick = new Joystick(1);
-    buttonBox = new Joystick(2);
-    Xbox = new XboxController(3);
+    private void configureButtonBindings() {
+        leftJoystick = new Joystick(0);
+        rightJoystick = new Joystick(1);
+        buttonBox = new Joystick(2);
+        Xbox = new XboxController(3);
 
-    // reverse intake
-    runIntakeInverseBtn = new JoystickButton(buttonBox, 1);
-    runIntakeInverseBtn.whileHeld(new RunIntake(intake, -0.2));
-    runIntakeInverseBtn.whileHeld(new Index(indexer, -0.7));
+        // reverse intake
+        runIntakeInverseBtn = new JoystickButton(buttonBox, 1);
+        runIntakeInverseBtn.whileHeld(new RunIntake(intake, -0.2));
+        runIntakeInverseBtn.whileHeld(new Index(indexer, -0.7));
 
-    // climb up/climb down
-    climbDown = new JoystickButton(buttonBox, 3);
-    climbDown.whileHeld(new ClimberRun(climber, -0.6));
-    climbUp = new JoystickButton(buttonBox, 2);
-    climbUp.whileHeld(
-        (new SequentialCommandGroup(new ClimberUnBrake(climber), new WaitCommand(1), new ClimberRun(climber, 0.7))));
-    climbUp.whenReleased(new ClimberBrake(climber));
+        // climb up/climb down
+        climbDown = new JoystickButton(buttonBox, 3);
+        climbDown.whileHeld(new ClimberRun(climber, -0.6));
+        climbUp = new JoystickButton(buttonBox, 2);
+        climbUp.whileHeld((new SequentialCommandGroup(new ClimberUnBrake(climber), new WaitCommand(1),
+                new ClimberRun(climber, 0.7))));
+        climbUp.whenReleased(new ClimberBrake(climber));
 
-    // manualElevation = new JoystickButton(buttonBox, 2);
-    // manualElevation.whileHeld(new ManualTurretElevation(0));
+        // manualElevation = new JoystickButton(buttonBox, 2);
+        // manualElevation.whileHeld(new ManualTurretElevation(0));
 
-    // runIntake
-    runIntakeBtn = new JoystickButton(buttonBox, 4);
-    runIntakeBtn.whileHeld(new RunIntake(intake, 1));
+        // runIntake
+        runIntakeBtn = new JoystickButton(buttonBox, 4);
+        runIntakeBtn.whileHeld(new RunIntake(intake, 1));
 
-    // Intake and Indexer
-    runIntakeIndexerBtn = new JoystickButton(Xbox, 5);
-    runIntakeIndexerBtn.whileHeld(new RunIntake(intake, 0.6));
-    runIntakeIndexerBtn.whileHeld(new Index(indexer, 1));
+        // Intake and Indexer
+        runIntakeIndexerBtn = new JoystickButton(Xbox, 5);
+        runIntakeIndexerBtn.whileHeld(new RunIntake(intake, 0.6));
+        runIntakeIndexerBtn.whileHeld(new Index(indexer, 1));
 
-    shootBtn = new JoystickButton(Xbox, 6);
-    // shootBtn.whileHeld(new ParallelCommandGroup(new OpenStopper(stopper)));
-    // indexer, slow speed
-    shootBtn.whileHeld(new ParallelCommandGroup(new OpenStopper(stopper), new Index(indexer, 0.5, true)));
-    shootBtn.whenReleased(new ParallelCommandGroup(new CloseStopper(stopper, indexer), new Shoot(0, shooter)));
+        shootBtn = new JoystickButton(Xbox, 6);
+        // shootBtn.whileHeld(new ParallelCommandGroup(new OpenStopper(stopper)));
+        // indexer, slow speed
+        shootBtn.whileHeld(new ParallelCommandGroup(new OpenStopper(stopper), new Index(indexer, 0.5, true)));
+        shootBtn.whenReleased(new ParallelCommandGroup(new CloseStopper(stopper, indexer), new Shoot(0, shooter)));
 
-    visionOverrideBtn = new JoystickButton(buttonBox, 8);
-    visionOverrideBtn.whenPressed(new RunTurretManual(turret));
+        visionOverrideBtn = new JoystickButton(buttonBox, 8);
+        visionOverrideBtn.whenPressed(new RunTurretManual(turret));
 
-    positionControlBtn = new JoystickButton(buttonBox, 5);
-    // positionControlBtn.whileHeld(new PositionsControl(controlPanel,
-    // colorSensor));
-    rotationControlBtn = new JoystickButton(buttonBox, 6);
-    // rotationControlBtn.whileHeld(new RotationControl(controlPanel, colorSensor));
+        positionControlBtn = new JoystickButton(buttonBox, 5);
+        // positionControlBtn.whileHeld(new PositionsControl(controlPanel,
+        // colorSensor));
+        rotationControlBtn = new JoystickButton(buttonBox, 6);
+        // rotationControlBtn.whileHeld(new RotationControl(controlPanel, colorSensor));
 
-    // senseColorBtn = new JoystickButton(buttonBox, 5);
-    // senseColorBtn.whileHeld(new SenseColor(colorSensor));
+        // senseColorBtn = new JoystickButton(buttonBox, 5);
+        // senseColorBtn.whileHeld(new SenseColor(colorSensor));
 
-    // Drive Train buttons
+        // Drive Train buttons
 
-    // left joystick
-    toggleLockStraightBtn = new JoystickButton(leftJoystick, 4);
-    toggleLockStraightBtn.whileHeld(new ToggleLockStraight(drivetrain));
+        // left joystick
+        toggleLockStraightBtn = new JoystickButton(leftJoystick, 4);
+        toggleLockStraightBtn.whileHeld(new ToggleLockStraight(drivetrain));
 
-    // right joystick
-    invertDriveBtn = new JoystickButton(rightJoystick, 2);
-    invertDriveBtn.whenPressed(new InvertDrive(drivetrain));
-    shiftHighWPBtn = new JoystickButton(rightJoystick, 3);
-    shiftHighWPBtn.whenPressed(new ShiftHigh(shifters));
-    quarterSpeedBtn = new JoystickButton(rightJoystick, 4);
-    quarterSpeedBtn.whenPressed(new XPercentSpeed(drivetrain, 0.25));
+        // right joystick
+        invertDriveBtn = new JoystickButton(rightJoystick, 2);
+        invertDriveBtn.whenPressed(new InvertDrive(drivetrain));
+        shiftHighWPBtn = new JoystickButton(rightJoystick, 3);
+        shiftHighWPBtn.whenPressed(new ShiftHigh(shifters));
+        quarterSpeedBtn = new JoystickButton(rightJoystick, 4);
+        quarterSpeedBtn.whenPressed(new XPercentSpeed(drivetrain, 0.25));
 
-    shiftLowBtn = new JoystickButton(rightJoystick, 5);
-    shiftLowBtn.whenPressed(new ShiftLow(shifters));
-    shiftHighWHBtn = new JoystickButton(rightJoystick, 1);
-    shiftHighWHBtn.whenPressed(new ShiftHigh(shifters));
-    shiftHighWHBtn.whenReleased(new ShiftLow(shifters));
+        shiftLowBtn = new JoystickButton(rightJoystick, 5);
+        shiftLowBtn.whenPressed(new ShiftLow(shifters));
+        shiftHighWHBtn = new JoystickButton(rightJoystick, 1);
+        shiftHighWHBtn.whenPressed(new ShiftHigh(shifters));
+        shiftHighWHBtn.whenReleased(new ShiftLow(shifters));
 
-    aButton = new JoystickButton(Xbox, 1);
-    aButton.whenPressed(new Shoot(1, shooter));
-    aButton.whenPressed(new RunTurretVision(turret, 0.8));
-    bButton = new JoystickButton(Xbox, 2);
-    bButton.whenPressed(new Shoot(.8, shooter));
-    bButton.whenPressed(new RunTurretVision(turret, 0.8));
-    xButton = new JoystickButton(Xbox, 3);
-    xButton.whenPressed(new Shoot(.7, shooter));
-    xButton.whenPressed(new RunTurretVision(turret, 0.8));
-    yButton = new JoystickButton(Xbox, 4);
-    yButton.whenPressed(new Shoot(.48, shooter));
-    yButton.whenPressed(new RunTurretVision(turret, 0.4));
-    openStopperBtn = new JoystickButton(Xbox, 10);
-    openStopperBtn.whenPressed(new OpenStopper(stopper));
+        aButton = new JoystickButton(Xbox, 1);
+        aButton.whenPressed(new Shoot(1, shooter));
+        aButton.whenPressed(new RunTurretVision(turret, 0.8));
+        bButton = new JoystickButton(Xbox, 2);
+        bButton.whenPressed(new Shoot(.8, shooter));
+        bButton.whenPressed(new RunTurretVision(turret, 0.8));
+        xButton = new JoystickButton(Xbox, 3);
+        xButton.whenPressed(new Shoot(.7, shooter));
+        xButton.whenPressed(new RunTurretVision(turret, 0.8));
+        yButton = new JoystickButton(Xbox, 4);
+        yButton.whenPressed(new Shoot(.48, shooter));
+        yButton.whenPressed(new RunTurretVision(turret, 0.4));
+        openStopperBtn = new JoystickButton(Xbox, 10);
+        openStopperBtn.whenPressed(new OpenStopper(stopper));
 
-    // FIXME: These commands are causing the robot to quit when simulated, but they don't prevent the code from building.
-    // m_chooser.addOption("AutonomousCorner", new AutonomousCorner(drivetrain));
-    // m_chooser.addOption("AutonomousCorner2", new AutonomousCorner2(drivetrain));
-    // m_chooser.addOption("AutonomousPortTR", new AutonomousPortTR(drivetrain));
-    // m_chooser.addOption("AutonomousPortTR2", new AutonomousPortTR2(drivetrain));
-    // m_chooser.addOption("AutonomousForward", new AutonomousForward(drivetrain));
-    // m_chooser.addOption("AutonomousBackward", new AutonomousBackward(drivetrain));
-    // m_chooser.addOption("AutonomousBackwardS2", new AutonomousBackwardS2(drivetrain));
-    // m_chooser.addOption("AutonomousBackwardS", new AutonomousBackwardS(drivetrain));
-    // m_chooser.addOption("AutonomousNew", new AutonomousNew(drivetrain));
-    // m_chooser.addOption("GalacticSearchRedA", new GalacticSearchRedA(drivetrain));
-    // m_chooser.addOption("GalacticSearchRedB", new GalacticSearchRedB(drivetrain));
-    // m_chooser.addOption("GalacticSearchBlueB", new GalacticSearchBlueB(drivetrain));
-    // m_chooser.addOption("GalacticSearchBlueA", new GalacticSearchBlueA(drivetrain));
-    // m_chooser.addOption("BarrelRacing", new BarrelRacing(drivetrain));
-    // m_chooser.addOption("Slalom", new Slalom(drivetrain));
-    // m_chooser.addOption("Bounce", new Bounce(drivetrain));
-    // m_chooser.setDefaultOption("PlaceHolderAuton", new PlaceHolderAuton());
+        // FIXME: These commands are causing the robot to quit when simulated, but they
+        // don't prevent the code from building.
+        // m_chooser.addOption("AutonomousCorner", new AutonomousCorner(drivetrain));
+        // m_chooser.addOption("AutonomousCorner2", new AutonomousCorner2(drivetrain));
+        // m_chooser.addOption("AutonomousPortTR", new AutonomousPortTR(drivetrain));
+        // m_chooser.addOption("AutonomousPortTR2", new AutonomousPortTR2(drivetrain));
+        // m_chooser.addOption("AutonomousForward", new AutonomousForward(drivetrain));
+        // m_chooser.addOption("AutonomousBackward", new
+        // AutonomousBackward(drivetrain));
+        // m_chooser.addOption("AutonomousBackwardS2", new
+        // AutonomousBackwardS2(drivetrain));
+        // m_chooser.addOption("AutonomousBackwardS", new
+        // AutonomousBackwardS(drivetrain));
+        // m_chooser.addOption("AutonomousNew", new AutonomousNew(drivetrain));
+        // m_chooser.addOption("GalacticSearchRedA", new
+        // GalacticSearchRedA(drivetrain));
+        // m_chooser.addOption("GalacticSearchRedB", new
+        // GalacticSearchRedB(drivetrain));
+        // m_chooser.addOption("GalacticSearchBlueB", new
+        // GalacticSearchBlueB(drivetrain));
+        // m_chooser.addOption("GalacticSearchBlueA", new
+        // GalacticSearchBlueA(drivetrain));
+        // m_chooser.addOption("BarrelRacing", new BarrelRacing(drivetrain));
+        // m_chooser.addOption("Slalom", new Slalom(drivetrain));
+        // m_chooser.addOption("Bounce", new Bounce(drivetrain));
+        // m_chooser.setDefaultOption("PlaceHolderAuton", new PlaceHolderAuton());
 
-  }
+    }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // The selected command will be run in autonomous
-    return m_chooser.getSelected();
-  }
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // The selected command will be run in autonomous
+        return m_chooser.getSelected();
+    }
 
-  public Intake getIntake() {
-    return intake;
-  }
+    public Intake getIntake() {
+        return intake;
+    }
 
-  public static RobotContainer getInstance() {
-    return m_robotContainer;
-  }
+    public static RobotContainer getInstance() {
+        return m_robotContainer;
+    }
 
 }
