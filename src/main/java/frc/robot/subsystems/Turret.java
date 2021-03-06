@@ -19,8 +19,8 @@ public class Turret implements Subsystem {
     private static final double H_MIN_DEGREES = H_MIN_ENCODER_TICKS * H_DEGREES_PER_TICK;
     private static final double H_MAX_DEGREES = H_MAX_ENCODER_TICKS * H_DEGREES_PER_TICK;
 
-    private static final double H_TOLERANCE = 2;
-    private static final double H_MIN_PERCENT = 0.08;
+    private static final double H_TOLERANCE = 1;
+    private static final double H_MIN_PERCENT = 0.1;
     private static final double H_MAX_PERCENT = 0.25;
 
     public final double DEFAULT_HORIZONTAL_ENCODER_PERCENT = 0.2;

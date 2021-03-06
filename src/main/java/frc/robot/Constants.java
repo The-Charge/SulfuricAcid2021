@@ -36,11 +36,11 @@ public class Constants {
         // public static final boolean kLeftEncoderReversed = false;
         // public static final boolean kRightEncoderReversed = true;
     
-        public static final double kTrackwidthMeters = 0.749676776;
+        public static final double kTrackwidthMeters = .676501156; //0.749676776;
         public static final DifferentialDriveKinematics kDriveKinematics =
             new DifferentialDriveKinematics(kTrackwidthMeters);
     
-        public static final int kEncoderCPR = 14000;  // 15525
+        public static final int kEncoderCPR = 16000;  // 14000
         public static final double kWheelDiameterMeters = 0.152;
         public static final double kEncoderDistancePerPulse =
             // Assumes the encoders are directly mounted on the wheel shafts
@@ -48,9 +48,9 @@ public class Constants {
     
         public static final boolean kGyroReversed = true;
       //TODO test/tune these values
-        public static final double ksVolts = 0.501; //.501
-        public static final double kvVoltSecondsPerMeter = 1.6;
-        public static final double kaVoltSecondsSquaredPerMeter = 0.176;
+        public static final double ksVolts = .809; //0.501;
+        public static final double kvVoltSecondsPerMeter = 1.65; //1.6;
+        public static final double kaVoltSecondsSquaredPerMeter = .22; //0.176;
     
         // Example value only - as above, this must be tuned for your drive!
         public static final double kPDriveVel = 4;
@@ -63,8 +63,8 @@ public class Constants {
       public static final class AutoConstants {
         public static final double initElevation = .8;
         public static final double initShootSpeed = 0.65;
-        public static final double kMaxSpeedMetersPerSecond = 1.5; //1.0
-        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; //.5
+        public static final double kMaxSpeedMetersPerSecond = 1.0; //1.5
+        public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //1.0
     
         // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
         public static final double kRamseteB = 2;

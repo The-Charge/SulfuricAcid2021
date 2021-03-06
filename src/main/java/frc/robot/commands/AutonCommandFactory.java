@@ -96,6 +96,6 @@ public class AutonCommandFactory extends CommandBase {
     public Command shootFor(double seconds, Stopper stopper, Indexer indexer, Shooter shooter, Turret turret) {
         ParallelCommandGroup runShooter = new ParallelCommandGroup(new OpenStopper(stopper), new Index(indexer, 0.5, true));
         ParallelCommandGroup shoot = new ParallelCommandGroup(new RunTurretVision(turret, 0.8), new Shoot(0.65, shooter), new WaitCommand(2).andThen(runShooter));
-        return new ParallelRaceGroup(new WaitCommand(seconds), shoot);
+        return new ParallelRaceGroup(new WaitCommand(seconds), shoot);  // .andThen(new CloseStopper(stopper, indexer));
     }
 }

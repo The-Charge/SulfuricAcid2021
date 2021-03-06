@@ -76,23 +76,23 @@ private int timer;
     
     public void setPercentSpeedPID(double setSpeed, boolean shooterOpen) {
         //boolean wasBall = wasBallSensedIn();
-        if (shooterOpen || setSpeed < 0)
-        {
+        // if (shooterOpen || setSpeed < 0)
+        // {
 
-        }
-        else if (m_stopper.ballSensedOut())
-        {
-            //FIXME: Move the magic numbers (0.1, 0.4) to constants. Document them
-            setSpeed = BALL_SENSED_OUT_SPEED*setSpeed;
-        }
-        else if (ballSensedIn())
-        {
-            setSpeed = BALL_SENSED_IN_SPEED*setSpeed;
-        }
-        else 
-        {
-            setSpeed = 0*setSpeed;
-        }
+        // }
+        // else if (m_stopper.ballSensedOut())
+        // {
+        //     //FIXME: Move the magic numbers (0.1, 0.4) to constants. Document them
+        //     setSpeed = BALL_SENSED_OUT_SPEED*setSpeed;
+        // }
+        // else if (ballSensedIn())
+        // {
+        //     setSpeed = BALL_SENSED_IN_SPEED*setSpeed;
+        // }
+        // else 
+        // {
+        //     setSpeed = 0*setSpeed;
+        // }
 
         SmartDashboard.putNumber("Indexer PID Val", setSpeed);
         indexerMotorLF.set(ControlMode.Velocity, MAX_TICKS_PER_SEC * setSpeed);
