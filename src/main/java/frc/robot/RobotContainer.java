@@ -253,7 +253,8 @@ private void configureButtonBindings() {
     // m_chooser.addOption("BarrelRacing", new BarrelRacing( drivetrain ));
     // m_chooser.addOption("Slalom", new Slalom( drivetrain ));
     // m_chooser.addOption("Bounce", new Bounce( drivetrain ));
-    m_chooser.setDefaultOption("Slalom", new Slalom(drivetrain, stopper, indexer, shooter, turret, intake));
+    //m_chooser.setDefaultOption("Slalom", new Slalom(drivetrain, stopper, indexer, shooter, turret, intake));
+    m_chooser.setDefaultOption("Bounce", new Bounce(drivetrain));
 
   }
   /**

@@ -8,13 +8,14 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot;
 
 import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -65,6 +66,7 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void disabledInit() {
+        m_robotContainer.drivetrain.setCoastMode();
     }
 
     @Override
@@ -76,6 +78,9 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void autonomousInit() {
+        m_robotContainer.drivetrain.resetEncoders();
+        // Even though this is called in the auton itself, it needs to be called initially here or else the robot will think it starts at (1, 0)
+        m_robotContainer.drivetrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
         // schedule the autonomous command (example)
