@@ -53,7 +53,7 @@ public class Constants {
         public static final double kaVoltSecondsSquaredPerMeter = .22; //0.176;
     
         // Example value only - as above, this must be tuned for your drive!
-        public static final double kPDriveVel = 0.8; //1.31 slalom and barrel
+        public static final double kPDriveVel = 0.7; //1.31 slalom and barrel -- 0.8 for bounce
       }
     
       public static final class OIConstants {
@@ -63,8 +63,8 @@ public class Constants {
       public static final class AutoConstants {
         public static final double initElevation = .8;
         public static final double initShootSpeed = 0.65;
-        public static final double kMaxSpeedMetersPerSecond = 1.0; //2.0 for slalom, 2.0 for barrel
-        public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //0.6 slalom, 0.5 for barrel
+        public static final double kMaxSpeedMetersPerSecond = 1.5; //2.0 for slalom, 2.0 for barrel
+        public static final double kMaxAccelerationMetersPerSecondSquared = 0.55; //0.6 slalom, 0.5 for barrel
     
         // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
         public static final double kRamseteB = 2;
