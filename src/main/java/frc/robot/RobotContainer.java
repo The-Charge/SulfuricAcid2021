@@ -150,10 +150,10 @@ public class RobotContainer {
     SmartDashboard.putData("Set Balls 0", new BallCounterReset(ballSensor));
 
     
-    SmartDashboard.putData("GalacticSearchRedA", new GalacticSearchRedA( drivetrain, intake ));
-    SmartDashboard.putData("GalacticSearchRedB", new GalacticSearchRedB( drivetrain, intake ));
-    SmartDashboard.putData("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain, intake ));
-    SmartDashboard.putData("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain, intake ));
+    // SmartDashboard.putData("GalacticSearchRedA", new GalacticSearchRedA( drivetrain, intake, indexer ));
+    // SmartDashboard.putData("GalacticSearchRedB", new GalacticSearchRedB( drivetrain, intake, indexer ));
+    // SmartDashboard.putData("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain, intake, indexer ));
+    // SmartDashboard.putData("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain, intake, indexer ));
     SmartDashboard.putData("BarrelRacing", new BarrelRacing( drivetrain ));
     SmartDashboard.putData("Slalom", new Slalom( drivetrain, stopper, indexer, shooter, turret, intake ));
     SmartDashboard.putData("Bounce", new Bounce( drivetrain ));
@@ -246,15 +246,15 @@ private void configureButtonBindings() {
 
 
    
-    // m_chooser.addOption("GalacticSearchRedA", new GalacticSearchRedA( drivetrain, intake ));
-    // m_chooser.addOption("GalacticSearchRedB", new GalacticSearchRedB( drivetrain, intake ));
-    // m_chooser.addOption("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain, intake ));
-    // m_chooser.addOption("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain, intake ));
+    // m_chooser.addOption("GalacticSearchRedA", new GalacticSearchRedA( drivetrain, intake, indexer ));
+    // m_chooser.addOption("GalacticSearchRedB", new GalacticSearchRedB( drivetrain, intake, indexer ));
+    // m_chooser.addOption("GalacticSearchBlueB", new GalacticSearchBlueB( drivetrain, intake, indexer ));
+    // m_chooser.addOption("GalacticSearchBlueA", new GalacticSearchBlueA( drivetrain, intake, indexer ));
     // m_chooser.addOption("BarrelRacing", new BarrelRacing( drivetrain ));
     // m_chooser.addOption("Slalom", new Slalom( drivetrain ));
     // m_chooser.addOption("Bounce", new Bounce( drivetrain ));
     //m_chooser.setDefaultOption("Slalom", new Slalom(drivetrain, stopper, indexer, shooter, turret, intake));
-    m_chooser.setDefaultOption("Bounce", new Bounce(drivetrain));
+    m_chooser.setDefaultOption("GS", new GalacticSearch(drivetrain, intake, indexer));
 
   }
   /**
