@@ -176,8 +176,9 @@ private void configureButtonBindings() {
     climbDown = new JoystickButton(buttonBox, 3);
     climbDown.whileHeld(new ClimberRun(climber, -0.6));
     climbUp = new JoystickButton(buttonBox, 2);
-    climbUp.whileHeld((new SequentialCommandGroup(new ClimberUnBrake(climber), new WaitCommand(1), new ClimberRun(climber, 0.7))));
-    climbUp.whenReleased(new ClimberBrake(climber));
+    climbUp.toggleWhenPressed(new PPForward(drivetrain, stopper, indexer, shooter, turret, intake));
+    // climbUp.whileHeld((new SequentialCommandGroup(new ClimberUnBrake(climber), new WaitCommand(1), new ClimberRun(climber, 0.7))));
+    // climbUp.whenReleased(new ClimberBrake(climber));
       
     //manualElevation = new JoystickButton(buttonBox, 2);
     //manualElevation.whileHeld(new ManualTurretElevation(0));
@@ -189,7 +190,7 @@ private void configureButtonBindings() {
     //Intake and Indexer
     runIntakeIndexerBtn = new JoystickButton(Xbox, 5);
     runIntakeIndexerBtn.whileHeld(new RunIntake(intake, 0.6));
-    runIntakeIndexerBtn.whileHeld(new Index(indexer, 1));
+    runIntakeIndexerBtn.whileHeld(new Index(indexer, 0.1));
     
 
     shootBtn = new JoystickButton(Xbox, 6);
