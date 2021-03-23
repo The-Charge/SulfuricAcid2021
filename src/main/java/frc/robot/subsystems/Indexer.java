@@ -91,7 +91,7 @@ private int timer;
         }
         else 
         {
-            setSpeed = 0*setSpeed;
+            setSpeed = 0.0;
         }
 
         SmartDashboard.putNumber("Indexer PID Val", setSpeed);

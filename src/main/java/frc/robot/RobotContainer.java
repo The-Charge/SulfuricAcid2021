@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -107,11 +108,14 @@ public class RobotContainer {
 
   public boolean realButtonBox = true;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+
+  public static int ctrPP = 0;
    
-    public RobotContainer() {
+  public RobotContainer() {
     SmartDashboard.putData("TurnOffLights", new TurnOffLights(lights));
       if (realButtonBox) configureButtonBindings();
-      smartDashboardButtons();   
+      smartDashboardButtons(); 
   }
 
   private void smartDashboardButtons() {
@@ -176,7 +180,9 @@ private void configureButtonBindings() {
     climbDown = new JoystickButton(buttonBox, 3);
     climbDown.whileHeld(new ClimberRun(climber, -0.6));
     climbUp = new JoystickButton(buttonBox, 2);
-    climbUp.toggleWhenPressed(new PPForward(drivetrain, stopper, indexer, shooter, turret, intake));
+
+    climbUp.whileHeld(new PPForward(drivetrain, stopper, indexer, shooter, turret, intake));
+    //climbUp.whenPressed(new InstantCommand(intake::stop, intake).andThen(new PPForward(drivetrain, stopper, indexer, shooter, turret, intake)));
     // climbUp.whileHeld((new SequentialCommandGroup(new ClimberUnBrake(climber), new WaitCommand(1), new ClimberRun(climber, 0.7))));
     // climbUp.whenReleased(new ClimberBrake(climber));
       
@@ -202,6 +208,7 @@ private void configureButtonBindings() {
     visionOverrideBtn.whenPressed(new RunTurretManual(turret));
      
     positionControlBtn = new JoystickButton(buttonBox, 5);
+    positionControlBtn.whenPressed(new PPEnd(indexer, intake));
     //positionControlBtn.whileHeld(new PositionsControl(controlPanel, colorSensor));
     rotationControlBtn = new JoystickButton(buttonBox, 6);
     //rotationControlBtn.whileHeld(new RotationControl(controlPanel, colorSensor));
@@ -278,4 +285,12 @@ private void configureButtonBindings() {
     return m_robotContainer;
   }
 
+
+  public void inc(){
+    System.out.println("INC HAS RUN -----------------------------------------------");
+    System.out.println(ctrPP);
+    ctrPP += 1;
+  }
 }
+
+

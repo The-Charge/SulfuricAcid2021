@@ -10,12 +10,17 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -101,5 +106,29 @@ public class AutonCommandFactory extends CommandBase {
         ParallelCommandGroup runShooter = new ParallelCommandGroup(new OpenStopper(stopper), new Index(indexer, 0.5, true));
         ParallelCommandGroup shoot = new ParallelCommandGroup(new RunTurretVision(turret, 0.8), new Shoot(0.65, shooter), new WaitCommand(2).andThen(runShooter));
         return new ParallelRaceGroup(new WaitCommand(seconds), shoot);  // .andThen(new CloseStopper(stopper, indexer));
+    }
+
+
+    public Command launch(double seconds, Stopper stopper, Indexer indexer){
+        return new SequentialCommandGroup(
+            new OpenStopper(stopper),
+            new ParallelRaceGroup(
+                new WaitCommand(seconds),
+                new Index(indexer, 0.5, true)
+            ),
+            new CloseStopper(stopper, indexer)
+        );
+    }
+
+    public Command runIntakeIndex(Intake intake, Indexer indexer){
+        return new ParallelCommandGroup(
+                new RunIntake(intake, 0.5),
+                new Index(indexer, 0.8)
+            );
+    }
+
+    public Command reset(double angle, Drivetrain drivetrain){
+        return new InstantCommand(() -> drivetrain.resetOdometry(new Pose2d(0,0, new Rotation2d(angle)))).andThen(
+            new InstantCommand(drivetrain::resetEncoders));
     }
 }
