@@ -30,15 +30,13 @@ public class Index extends CommandBase {
     public void initialize() {
         m_indexer.initalizeMotors();
         m_indexer.initSpeedMode();
-        if (m_speed > 0)
-            SmartDashboard.putBoolean("Indexer", true);
-        else SmartDashboard.putBoolean("Indexer", false);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        m_indexer.setPercentSpeedPID(m_speed, shooterOpen);
+        m_indexer.setPercentSpeedPIDSimple(m_speed, shooterOpen);
+        // m_indexer.setPercentSpeedPID(m_speed, shooterOpen);
         //SmartDashboard.putNumber("Y AXIS VAL", yAxisVal);
     }
 

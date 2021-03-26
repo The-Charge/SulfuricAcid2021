@@ -88,53 +88,53 @@ public class PPForward extends SequentialCommandGroup {
 
     @Override
     public void initialize() {
-        // TODO Auto-generated method stub
-        factory = new AutonCommandFactory();
+        // // TODO Auto-generated method stub
+        // factory = new AutonCommandFactory();
 
-        // RobotContainer.ctrPP += 1;
+        // // RobotContainer.ctrPP += 1;
 
-        System.out.println("============================================================");
-        System.out.println("BEFORE SD");
-        System.out.println("============================================================");
+        // System.out.println("============================================================");
+        // System.out.println("BEFORE SD");
+        // System.out.println("============================================================");
 
-        SmartDashboard.putNumber("COUNTER", RobotContainer.ctrPP);
-        SmartDashboard.putString("TIMESTAMP", (new Date()).toString());
+        // SmartDashboard.putNumber("COUNTER", RobotContainer.ctrPP);
+        // SmartDashboard.putString("TIMESTAMP", (new Date()).toString());
 
-        System.out.println("AFTER SD");
-        System.out.println("============================================================");
+        // System.out.println("AFTER SD");
+        // System.out.println("============================================================");
 
-        // addCommands(
-        // new ConditionalCommand(
+        // // addCommands(
+        // // new ConditionalCommand(
 
-        // )
-        // );
+        // // )
+        // // );
 
-        if (RobotContainer.ctrPP != 1) {
-            System.out.println("NOT 1");
-            System.out.println("============================================================");
-            addCommands(
+        // if (RobotContainer.ctrPP != 1) {
+        //     System.out.println("NOT 1");
+        //     System.out.println("============================================================");
+        //     addCommands(
 
-                    new ParallelRaceGroup(
-                            new ParallelCommandGroup(new Shoot(0.8, m_shooter), new RunTurretVision(m_turret, 0.75)),
-                            new SequentialCommandGroup(factory.reset(Math.PI, m_drivetrain), getAutonomous(true),
-                                    factory.launch(3, m_stopper, m_indexer))),
-                    factory.reset(0, m_drivetrain),
-                    new ParallelRaceGroup(getAutonomous(false), new RunCommand(() -> m_turret.runHorizontalManual(0))),
-                    factory.runIntakeIndex(m_intake, m_indexer));
-        } else {
-            System.out.println("IS 1");
-            System.out.println("============================================================");
-            addCommands(
-                    new ParallelRaceGroup(
-                            new ParallelCommandGroup(new Shoot(0.8, m_shooter), new RunTurretVision(m_turret, 0.75)),
-                            new WaitCommand(2).andThen(factory.launch(3, m_stopper, m_indexer))),
-                    factory.reset(0, m_drivetrain),
-                    new ParallelRaceGroup(getAutonomous(false), new RunCommand(() -> m_turret.runHorizontalManual(0))),
-                    factory.runIntakeIndex(m_intake, m_indexer));
-        }
+        //             new ParallelRaceGroup(
+        //                     new ParallelCommandGroup(new Shoot(0.8, m_shooter), new RunTurretVision(m_turret, 0.75)),
+        //                     new SequentialCommandGroup(factory.reset(Math.PI, m_drivetrain), getAutonomous(true),
+        //                             factory.launch(3, m_stopper, m_indexer))),
+        //             factory.reset(0, m_drivetrain),
+        //             new ParallelRaceGroup(getAutonomous(false), new RunCommand(() -> m_turret.runHorizontalManual(0))),
+        //             factory.runIntakeIndex(m_intake, m_indexer));
+        // } else {
+        //     System.out.println("IS 1");
+        //     System.out.println("============================================================");
+        //     addCommands(
+        //             new ParallelRaceGroup(
+        //                     new ParallelCommandGroup(new Shoot(0.8, m_shooter), new RunTurretVision(m_turret, 0.75)),
+        //                     new WaitCommand(2).andThen(factory.launch(3, m_stopper, m_indexer))),
+        //             factory.reset(0, m_drivetrain),
+        //             new ParallelRaceGroup(getAutonomous(false), new RunCommand(() -> m_turret.runHorizontalManual(0))),
+        //             factory.runIntakeIndex(m_intake, m_indexer));
+        // }
 
-        System.out.println("VERY END");
-        System.out.println("============================================================");
+        // System.out.println("VERY END");
+        // System.out.println("============================================================");
     }
 
     @Override
