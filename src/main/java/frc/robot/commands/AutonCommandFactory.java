@@ -238,7 +238,7 @@ public class AutonCommandFactory extends CommandBase {
                 ).andThen(launch(3, stopper, indexer))
             ),
             driveStraight(-reverseDistance, 2, 0.9, drivetrain),
-            runIntakeIndex(0.5, 0.2, intake, indexer)
+            runIntakeIndex(0.5, 0.1, intake, indexer)
         );
     }
 

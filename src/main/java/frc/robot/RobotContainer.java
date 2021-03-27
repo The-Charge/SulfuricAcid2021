@@ -256,14 +256,14 @@ public class RobotContainer {
         shiftHighWHBtn.whenReleased(new ShiftLow(shifters));
 
         aButton = new JoystickButton(Xbox, 1);
-        aButton.whenPressed(new Shoot(1, shooter));
-        aButton.whenPressed(new RunTurretVision(turret, 0.8));
+        aButton.whenPressed(new Shoot(.65, shooter));
+        aButton.whenPressed(new RunTurretVision(turret, 0.9));
         bButton = new JoystickButton(Xbox, 2);
-        bButton.whenPressed(new Shoot(.8, shooter));
-        bButton.whenPressed(new RunTurretVision(turret, 0.8));
+        bButton.whenPressed(new Shoot(.7, shooter));
+        bButton.whenPressed(new RunTurretVision(turret, 0.85));
         xButton = new JoystickButton(Xbox, 3);
         xButton.whenPressed(new Shoot(.7, shooter));
-        xButton.whenPressed(new RunTurretVision(turret, 0.8));
+        xButton.whenPressed(new RunTurretVision(turret, 0.75));
         yButton = new JoystickButton(Xbox, 4);
         yButton.whenPressed(new Shoot(.48, shooter));
         yButton.whenPressed(new RunTurretVision(turret, 0.4));
