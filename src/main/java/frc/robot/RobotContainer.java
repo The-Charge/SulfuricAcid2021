@@ -107,6 +107,12 @@ public class RobotContainer {
     public JoystickButton yButton;
     public JoystickButton openStopperBtn;
 
+    //Challenge Buttons
+    public JoystickButton greenZone;
+    public JoystickButton yellowZone;
+    public JoystickButton blueZone;
+    public JoystickButton redZone;
+
     public boolean realButtonBox = true;
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -194,10 +200,24 @@ public class RobotContainer {
         climbDown.whileHeld(new ClimberRun(climber, -0.6));
         climbUp = new JoystickButton(buttonBox, 2);
 
+
+        // Challenge Buttons
         AutonCommandFactory factory = new AutonCommandFactory();
         runIntakeInverseBtn.whileHeld(factory.generateShootSequence(2.5, true, drivetrain, shooter, turret, intake, indexer, stopper));
         climbUp.whileHeld(factory.generateShootSequence(2.5, false, drivetrain, shooter, turret, intake, indexer, stopper));
-        
+
+        greenZone = new JoystickButton(buttonBox, 5);
+        greenZone.whileHeld(factory.generateShootSequence(.9, .65, 1.524 * 4, 1.524 * 4, true, drivetrain, shooter, turret, intake, indexer, stopper));
+
+        yellowZone = new JoystickButton(buttonBox, 6);
+        yellowZone.whileHeld(factory.generateShootSequence(.85, .7, 1.524 * 3, 1.524 * 3, false, drivetrain, shooter, turret, intake, indexer, stopper));
+
+        blueZone = new JoystickButton(buttonBox, 7);
+        blueZone.whileHeld(factory.generateShootSequence(.75, .7, 1.524 * 2, 1.524 * 2, false, drivetrain, shooter, turret, intake, indexer, stopper));
+
+        redZone = new JoystickButton(buttonBox, 8);
+        redZone.whileHeld(factory.generateShootSequence(.4, .48, 1.524, 1.524, false, drivetrain, shooter, turret, intake, indexer, stopper));
+
         // climbUp.whenPressed(new InstantCommand(intake::stop, intake).andThen(new
         // PPForward(drivetrain, stopper, indexer, shooter, turret, intake)));
         // climbUp.whileHeld((new SequentialCommandGroup(new ClimberUnBrake(climber),
@@ -221,6 +241,8 @@ public class RobotContainer {
         // indexer, slow speed
         shootBtn.whileHeld(new ParallelCommandGroup(new OpenStopper(stopper), new Index(indexer, 0.5, true)));
         shootBtn.whenReleased(new ParallelCommandGroup(new CloseStopper(stopper, indexer), new Shoot(0, shooter)));
+
+
 
         visionOverrideBtn = new JoystickButton(buttonBox, 8);
         visionOverrideBtn.whenPressed(new RunTurretManual(turret));
