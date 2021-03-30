@@ -206,17 +206,19 @@ public class RobotContainer {
         runIntakeInverseBtn.whileHeld(factory.generateShootSequence(2.5, true, drivetrain, shooter, turret, intake, indexer, stopper));
         climbUp.whileHeld(factory.generateShootSequence(2.5, false, drivetrain, shooter, turret, intake, indexer, stopper));
 
-        greenZone = new JoystickButton(buttonBox, 5);
-        greenZone.whileHeld(factory.generateShootSequence(.9, .65, 1.524 * 4, 1.524 * 4, true, drivetrain, shooter, turret, intake, indexer, stopper));
+        double zoneDistance = 1.4;
 
-        yellowZone = new JoystickButton(buttonBox, 6);
-        yellowZone.whileHeld(factory.generateShootSequence(.85, .7, 1.524 * 3, 1.524 * 3, false, drivetrain, shooter, turret, intake, indexer, stopper));
+        redZone = new JoystickButton(buttonBox, 5);
+        redZone.whileHeld(factory.generateShootSequence(.9, .62, zoneDistance * 1, zoneDistance * 1, false, drivetrain, shooter, turret, intake, indexer, stopper));
 
-        blueZone = new JoystickButton(buttonBox, 7);
-        blueZone.whileHeld(factory.generateShootSequence(.75, .7, 1.524 * 2, 1.524 * 2, false, drivetrain, shooter, turret, intake, indexer, stopper));
+        blueZone = new JoystickButton(buttonBox, 6);
+        blueZone.whileHeld(factory.generateShootSequence(.85, .65, zoneDistance * 2, zoneDistance * 2, false, drivetrain, shooter, turret, intake, indexer, stopper));
 
-        redZone = new JoystickButton(buttonBox, 8);
-        redZone.whileHeld(factory.generateShootSequence(.4, .48, 1.524, 1.524, false, drivetrain, shooter, turret, intake, indexer, stopper));
+        yellowZone = new JoystickButton(buttonBox, 7);
+        yellowZone.whileHeld(factory.generateShootSequence(.75, .7, zoneDistance * 3, zoneDistance * 3, false, drivetrain, shooter, turret, intake, indexer, stopper));
+
+        greenZone = new JoystickButton(buttonBox, 8);
+        greenZone.whileHeld(factory.generateShootSequence(.4, .48, zoneDistance * 4, zoneDistance * 4, true, drivetrain, shooter, turret, intake, indexer, stopper));
 
         // climbUp.whenPressed(new InstantCommand(intake::stop, intake).andThen(new
         // PPForward(drivetrain, stopper, indexer, shooter, turret, intake)));
@@ -244,14 +246,14 @@ public class RobotContainer {
 
 
 
-        visionOverrideBtn = new JoystickButton(buttonBox, 8);
-        visionOverrideBtn.whenPressed(new RunTurretManual(turret));
+        // visionOverrideBtn = new JoystickButton(buttonBox, 8);
+        // visionOverrideBtn.whenPressed(new RunTurretManual(turret));
 
-        positionControlBtn = new JoystickButton(buttonBox, 5);
-        positionControlBtn.whenPressed(new PPEnd(indexer, intake));
+        // positionControlBtn = new JoystickButton(buttonBox, 5);
+        // positionControlBtn.whenPressed(new PPEnd(indexer, intake));
         // positionControlBtn.whileHeld(new PositionsControl(controlPanel,
         // colorSensor));
-        rotationControlBtn = new JoystickButton(buttonBox, 6);
+        // rotationControlBtn = new JoystickButton(buttonBox, 6);
         // rotationControlBtn.whileHeld(new RotationControl(controlPanel, colorSensor));
 
         // senseColorBtn = new JoystickButton(buttonBox, 5);

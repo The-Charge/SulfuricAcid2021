@@ -244,9 +244,9 @@ public class AutonCommandFactory extends CommandBase {
 
     public Command generateShootSequence(double turretVertical, double turretSpeed, double distance, double reverseDistance, boolean initial, Drivetrain drivetrain, Shooter shooter, Turret turret, Intake intake, Indexer indexer, Stopper stopper) {
         return new SequentialCommandGroup(
-            prepShooter(turretVertical, turretSpeed, turret, shooter).raceWith(
+            prepShooter(turretSpeed, turretVertical, turret, shooter).raceWith(
                 new ConditionalCommand(
-                    new WaitCommand(1.5),  // if initial, give shooter time to speed up
+                    new WaitCommand(3.5),  // if initial, give shooter time to speed up
                     driveStraight(distance, 2, 0.9, drivetrain),  // if not initial, drive into position
                     () -> initial
                 ).andThen(launch(3, stopper, indexer))
