@@ -208,16 +208,16 @@ public class RobotContainer {
 
         double zoneDistance = 1.4;
 
-        redZone = new JoystickButton(buttonBox, 5);
+        redZone = new JoystickButton(buttonBox, 8);
         redZone.whileHeld(factory.generateShootSequence(.9, .62, zoneDistance * 1, zoneDistance * 1, false, drivetrain, shooter, turret, intake, indexer, stopper));
 
-        blueZone = new JoystickButton(buttonBox, 6);
+        blueZone = new JoystickButton(buttonBox, 7);
         blueZone.whileHeld(factory.generateShootSequence(.85, .65, zoneDistance * 2, zoneDistance * 2, false, drivetrain, shooter, turret, intake, indexer, stopper));
 
-        yellowZone = new JoystickButton(buttonBox, 7);
-        yellowZone.whileHeld(factory.generateShootSequence(.75, .7, zoneDistance * 3, zoneDistance * 3, false, drivetrain, shooter, turret, intake, indexer, stopper));
+        yellowZone = new JoystickButton(buttonBox, 6);
+        yellowZone.whileHeld(factory.generateShootSequence(.75, .65, zoneDistance * 3, zoneDistance * 3, false, drivetrain, shooter, turret, intake, indexer, stopper));
 
-        greenZone = new JoystickButton(buttonBox, 8);
+        greenZone = new JoystickButton(buttonBox, 5);
         greenZone.whileHeld(factory.generateShootSequence(.4, .48, zoneDistance * 4, zoneDistance * 4, true, drivetrain, shooter, turret, intake, indexer, stopper));
 
         // climbUp.whenPressed(new InstantCommand(intake::stop, intake).andThen(new

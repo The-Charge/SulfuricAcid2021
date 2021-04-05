@@ -242,19 +242,37 @@ public class AutonCommandFactory extends CommandBase {
         );
     }
 
-    public Command generateShootSequence(double turretVertical, double turretSpeed, double distance, double reverseDistance, boolean initial, Drivetrain drivetrain, Shooter shooter, Turret turret, Intake intake, Indexer indexer, Stopper stopper) {
+    public Command generateShootSequence(double shootTime, double turretVertical, double turretSpeed, double distance, double reverseDistance, boolean initial, Drivetrain drivetrain, Shooter shooter, Turret turret, Intake intake, Indexer indexer, Stopper stopper) {
         return new SequentialCommandGroup(
             prepShooter(turretSpeed, turretVertical, turret, shooter).raceWith(
                 new ConditionalCommand(
                     new WaitCommand(3.5),  // if initial, give shooter time to speed up
                     driveStraight(distance, 2, 0.9, drivetrain),  // if not initial, drive into position
                     () -> initial
-                ).andThen(launch(3, stopper, indexer))
+                ).andThen(launch(shootTime, stopper, indexer))
             ),
             driveStraight(-reverseDistance, 2, 0.9, drivetrain),
             runIntakeIndex(0.5, 0.1, intake, indexer)
         );
     }
+
+    public Command generateShootSequence(double turretVertical, double turretSpeed, double distance, double reverseDistance, boolean initial, Drivetrain drivetrain, Shooter shooter, Turret turret, Intake intake, Indexer indexer, Stopper stopper) {
+        return generateShootSequence(3, turretVertical, turretSpeed, distance, reverseDistance, initial, drivetrain, shooter, turret, intake, indexer, stopper);
+    }
+
+    // public Command generateShootSequence(double turretVertical, double turretSpeed, double distance, double reverseDistance, boolean initial, Drivetrain drivetrain, Shooter shooter, Turret turret, Intake intake, Indexer indexer, Stopper stopper) {
+    //     return new SequentialCommandGroup(
+    //         prepShooter(turretSpeed, turretVertical, turret, shooter).raceWith(
+    //             new ConditionalCommand(
+    //                 new WaitCommand(3.5),  // if initial, give shooter time to speed up
+    //                 driveStraight(distance, 2, 0.9, drivetrain),  // if not initial, drive into position
+    //                 () -> initial
+    //             ).andThen(launch(3, stopper, indexer))
+    //         ),
+    //         driveStraight(-reverseDistance, 2, 0.9, drivetrain),
+    //         runIntakeIndex(0.5, 0.1, intake, indexer)
+    //     );
+    // }
 
     public Command generateShootSequence(double distance, boolean initial, Drivetrain drivetrain, Shooter shooter, Turret turret, Intake intake, Indexer indexer, Stopper stopper) {
         return generateShootSequence(distance, distance, initial, drivetrain, shooter, turret, intake, indexer, stopper);

@@ -17,6 +17,7 @@ public class Indexer implements Subsystem {
     // FIXME: This is unused. Remove.
     private Intake m_intake;
     private DigitalInput ballIn;
+    private DigitalInput secondarySensor;
     private int timer;
     private MedianFilter ballFilter = new MedianFilter(15);
 
@@ -47,11 +48,12 @@ public class Indexer implements Subsystem {
         indexerMotorRF = new WPI_TalonSRX(10);
 
         ballIn = new DigitalInput(2);
+        secondarySensor = new DigitalInput(0);
         m_stopper = stopper;
     }
 
     public void periodic() {
-
+        SmartDashboard.putBoolean("Indexer/Alternate Sensor", secondarySensor.get());
     }
 
     public void stop() {
@@ -116,6 +118,7 @@ public class Indexer implements Subsystem {
             setSpeed = 0.0;
         }
 
+        SmartDashboard.putBoolean("Indexer/Raw Ball Sensed In", ballIn.get());
         SmartDashboard.putNumber("Indexer/Setpoint", setSpeed);
         SmartDashboard.putBoolean("Indexer/Ball Sensed In", ballSensedIn());
         SmartDashboard.putNumber("Indexer/Actual Speed", getTicksPerSecondLeft());
