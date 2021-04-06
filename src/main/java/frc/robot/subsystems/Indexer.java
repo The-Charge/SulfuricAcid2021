@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.MedianFilter;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+
+import java.util.Date;
+
 //import edu.wpi.first.wpilibj.
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -32,6 +35,8 @@ public class Indexer implements Subsystem {
     public double speedD = SPEED_D_CONSTANT;
     public double speedF = SPEED_F_CONSTANT;
 
+    private double prev_ball_time;
+
     private Stopper m_stopper;
 
     public final static int PID_SLOT_SPEED_MODE = 0;
@@ -50,6 +55,8 @@ public class Indexer implements Subsystem {
         ballIn = new DigitalInput(2);
         secondarySensor = new DigitalInput(0);
         m_stopper = stopper;
+
+        prev_ball_time = new Date().getTime();
     }
 
     public void periodic() {
@@ -89,7 +96,13 @@ public class Indexer implements Subsystem {
      * @param speed
      */
     public void setPercentSpeedPIDSimple(double speed, boolean shooterOpen) {
-        if (!ballSensedIn() && !shooterOpen) {
+        boolean sensed = ballSensedIn();
+        double timestamp = new Date().getTime();
+        if (sensed) {
+            prev_ball_time = timestamp;
+        }
+
+        if (!(sensed || timestamp - prev_ball_time < 100) && !shooterOpen) {
             speed = 0;
             stop();
         } else {
@@ -100,6 +113,7 @@ public class Indexer implements Subsystem {
         SmartDashboard.putNumber("Indexer/Setpoint", speed);
         SmartDashboard.putBoolean("Indexer/Ball Sensed In", ballSensedIn());
         SmartDashboard.putNumber("Indexer/Actual Speed", getTicksPerSecondLeft());
+        SmartDashboard.putBoolean("Sensed", sensed);
     }
 
     public void setPercentSpeedPID(double setSpeed, boolean shooterOpen) {

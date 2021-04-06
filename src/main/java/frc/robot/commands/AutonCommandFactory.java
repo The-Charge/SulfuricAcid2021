@@ -99,7 +99,7 @@ public class AutonCommandFactory extends CommandBase {
     }
 
     public Command getIntakeIndexer(Intake intake, Indexer indexer) {
-        return new ParallelCommandGroup(new RunIntake(intake, 0.5), new Index(indexer, 0.2));
+        return new ParallelCommandGroup(new RunIntake(intake, 0.35), new Index(indexer, 0.2));
     }
 
     public Command getAutonIntake(Intake intake) {
