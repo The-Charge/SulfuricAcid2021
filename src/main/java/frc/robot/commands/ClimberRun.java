@@ -31,9 +31,10 @@ public class ClimberRun extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        m_climber.set(m_power);
         if (m_power < 0) {
             m_climber.engageBrakes();
-            m_climber.set(m_power);
+            
             m_climber.limitCurrent();
         }
     }
